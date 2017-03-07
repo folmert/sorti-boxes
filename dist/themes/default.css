@@ -1,0 +1,305 @@
+.well {
+  text-align: center;
+  color: rgb(196, 196, 196);
+}
+
+.sorti-box {
+  padding: 0 0 10px 0;
+}
+
+.sorti-box .moveUpDown a {
+  padding: 8px 9px;
+}
+
+.sorti-box .moveUpDown a i:before {
+  color: rgb(124, 124, 124);
+  font-size: 20px;
+}
+
+.sorti-box .toggleAvailableBox, .sorti-box .toggleElement, .sorti-box .moveUpDown {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.sorti-box .sorti-box-half {
+  margin: 0;
+  background: rgb(250, 250, 250);
+  overflow-x: hidden;
+  display: block;
+  border: 1px solid rgb(175, 175, 175);
+}
+
+.sorti-box .sorti-box-half .toggleElement {
+  float: right;
+}
+
+.sorti-box .sorti-box-half .toggleElement a {
+  text-align: center;
+  font-size: 30px;
+  height: 100%;
+  display: block;
+  padding: 5px 0 5px 25px;
+}
+
+.sorti-box .sorti-box-half .toggleElement a i:before {
+  top: 10px;
+  font-size: 14px;
+}
+
+.sorti-box .sorti-box-half .toggleElement a:hover {
+  text-decoration: none;
+}
+
+.sorti-box .sorti-box-half table {
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.sorti-box .sorti-box-half table tr {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sorti-box .sorti-box-half table thead {
+  margin: 0;
+  list-style-type: none;
+  border-bottom: 1px solid rgb(175, 175, 175);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.sorti-box .sorti-box-half table thead .txt {
+  line-height: 30px;
+  color: rgb(204, 204, 204);
+}
+
+.sorti-box .sorti-box-half table thead tr {
+  background: white;
+  box-sizing: border-box;
+  line-height: 33px;
+}
+
+.sorti-box .sorti-box-half table thead tr th {
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.sorti-box .sorti-box-half table tbody {
+  overflow-x: hidden;
+  display: block;
+}
+
+.sorti-box .sorti-box-half table tbody tr {
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.sorti-box .sorti-box-half table tbody tr td {
+  min-height: 42px;
+  display: table-cell;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  box-sizing: border-box;
+  float: left;
+  border-right: 1px solid rgb(229, 229, 229)
+}
+
+.sorti-box .sorti-box-half table tbody tr td:last-child, .sorti-box .sorti-box-half table tbody tr td:first-child {
+  border-right: none;
+}
+
+.sorti-box .sorti-box-half table tbody tr td:nth-child(2) {
+  border-left: 1px solid rgb(229, 229, 229);
+}
+
+.sorti-box .sorti-box-half table tbody tr td.vals {
+  line-height: 34px;
+}
+
+.sorti-box .sorti-box-half table tbody tr td.name {
+  display: table;
+  padding-left: 30px;
+  padding-right: 20px;
+  line-height: 1.3;
+}
+
+.sorti-box .sorti-box-half table tbody tr td.name .txt {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 5px 20px 5px 30px;
+  height: 30px;
+  line-height: 16px;
+  text-align: left;
+}
+
+.sorti-box .sorti-box-half table tbody tr td.name:not(.special) {
+  position: relative;
+}
+
+.sorti-box .sorti-box-half table tbody tr td.name:not(.special):before {
+  color: rgb(224, 69, 69);
+  content: '\B7';
+  overflow: hidden;
+  position: absolute;
+  left: 10px;
+  font-size: 50px;
+  height: 100%;
+  line-height: 80%;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available .toggleElement a i:before {
+
+  /* select/add */
+  content: "\E191";
+  color: rgb(158, 158, 158);
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected .toggleElement a i:before {
+
+  /* remove */
+  content: "\E208";
+  color: rgb(116, 70, 70);
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected .moveUpDown {
+  float: none;
+  line-height: 40px;
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tr:first-child .moveUp, .sorti-box .sorti-box-half.sorti-box-selected tr:last-child .moveDown {
+  visibility: hidden;
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected input {
+  width: 19px;
+  height: 15px;
+  text-align: center;
+  color: #333333;
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody {
+  max-height: 215px;
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody tr {
+  background: rgb(236, 236, 236);
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody tr:nth-child(even) {
+  background: rgb(229, 229, 229);
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody tr:hover {
+  background: rgb(221, 221, 221);
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody tr.info {
+  color: rgb(196, 196, 196);
+  font-style: italic;
+  text-align: center;
+  display: block;
+  border-bottom: none;
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody tr.info td {
+  width: 100%;
+  line-height: 41px;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available {
+  border-top: none;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available .sorti-box-available-toggle {
+  border-bottom: 1px solid rgb(211, 211, 211);
+  cursor: pointer;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available .sorti-box-available-toggle-label {
+  color: rgb(130, 130, 130);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available .moveUpDown {
+  display: none;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available tbody {
+  max-height: 430px;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available tbody tr {
+  background: rgb(250, 250, 250);
+  color: rgb(153, 153, 153);
+}
+
+.sorti-box .sorti-box-half.sorti-box-available tbody tr td {}
+
+.sorti-box .sorti-box-half.sorti-box-available tbody tr td.vals input {
+  display: none;
+}
+
+.sorti-box .sorti-box-half.sorti-box-available tbody tr:nth-child(even) {
+  background: rgb(248, 248, 248);
+}
+
+.sorti-box .sorti-box-half.sorti-box-available tbody tr:hover {
+  background: rgb(236, 236, 236);
+}
+
+.sorti-box-header {
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.sorti-box-header .name {
+  padding: 0 0 0 10px;
+}
+
+.sorti-box-header .name span {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.sorti-box-heading tr {
+  padding-top: 10px;
+}
+
+@media (max-width: 767px) {
+  .sorti-box .sorti-box-half table .row-fluid [class*="span"] {
+    display: inline;
+  }
+
+  .sorti-box .sorti-box-half table tbody tr td.name {
+    padding: 0;
+  }
+
+  .sorti-box .sorti-box-half table tbody tr td.name .txt {
+    padding: 2px 0 2px 25px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .sorti-box-half .toggleAvailableBox, .sorti-box-half .toggleElement, .sorti-box-selected .moveUpDown {
+    float: none;
+  }
+
+  .sorti-box-selected tr.row-fluid span {
+    min-height: 30px;
+    display: block;
+    padding: 0;
+  }
+}
+
+/* only for macbooks */
+.OSX #notification-rules .sorti-box-half {
+  overflow: scroll;
+}

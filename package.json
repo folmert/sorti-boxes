@@ -1,0 +1,29 @@
+{
+  "name": "sorti-boxes",
+  "version": "1.0.0",
+  "description": "Creates boxes with selectable and sortable elements",
+  "main": "dist/js/sorti-boxes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "boxes",
+    "toggle",
+    "sort"
+  ],
+  "author": "Lukas Folmert",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "path": "^0.12.7",
+    "postcss-cssnext": "^2.9.0",
+    "postcss-loader": "^1.3.3",
+    "precss": "^1.4.0",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1"
+  }
+}
