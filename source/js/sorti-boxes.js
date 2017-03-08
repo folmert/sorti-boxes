@@ -43,7 +43,7 @@
 
                 boxes: [{
                     id:   1,
-                    name: 'BR', // will be used as header
+                    name: 'TR', // will be used as header
 
                     elements: [
                         {
@@ -138,37 +138,37 @@
                 }]
             }
         ],
-        additionalHeading: `<tr class="row-fluid small">
+        additionalHeading: `<tr class="small">
                     <th class="span4"></th>
-                    <th class="span1 valInfo row-fluid">
+                    <th class="span1 valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo row-fluid">
+                    <th class="span1 valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo row-fluid">
+                    <th class="span1 valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo row-fluid">
+                    <th class="span1 valInfo">
                             <small class="span6 txt">new</small>
                             <small class="span6 txt">default</small>
                         </th>
-                    <th class="span1 valInfo row-fluid">
+                    <th class="span1 valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo row-fluid">
+                    <th class="span1 valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo row-fluid">
+                    <th class="span1 valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 row-fluid"> </th>
+                    <th class="span1"> </th>
                 </tr>`,
         labels: {
             toggleAvailableOn:  'Show available elements',
@@ -287,8 +287,8 @@ require('../themes/default.pcss');
                 // 1. MAIN PARTS:
 
                 var _box = $('<div></div>').addClass('sorti-box').attr('rel', box.id);
-                var _boxSelected = $('<div class="sorti-box-selected-container"><div class="sorti-box-selected sorti-box-half"><table></table></div></div>');
-                var _boxAvailable = $('<div class="sorti-box-available-container"><div class="sorti-box-available sorti-box-half"><table></table></div></div>');
+                var _boxSelected = $('<div class="sorti-box-selected-container"><div class="sorti-box-selected sorti-box-half"><table class="table"></table></div></div>');
+                var _boxAvailable = $('<div class="sorti-box-available-container"><div class="sorti-box-available sorti-box-half"><table class="table"></table></div></div>');
                 var _boxSelectedContent = $('<tbody></tbody>');
                 var _boxAvailableContent = $('<tbody></tbody>');
                 var _boxHead = $('<thead></thead>');
@@ -302,7 +302,11 @@ require('../themes/default.pcss');
                 var _heading = $(`<tr class="sorti-box-heading ${bsClasses.row}"></tr>`);
                 _heading.append($(`<th class="${bsClasses.col}${options.colSpanName}"><span class="sorti-box-heading-param">Name</span></th>`));
                 $.each(options.params, function (paramIndex, param) {
-                    _heading.append($(`<th class="${bsClasses.col}${options.colSpanParam}">${param.label}</th>`));
+                    _heading.append($(`<th class="${bsClasses.col}${options.colSpanParam}">
+                                        <span class="sorti-box-heading-param">
+                                            ${param.label}
+                                        </span>
+                                        </th>`));
                 });
                 _heading.append($(`<th class="${bsClasses.col}${options.colSpanParam}"> </th>`));
 
@@ -313,7 +317,7 @@ require('../themes/default.pcss');
                 var _boxToggleAvailable = `<thead class="sorti-box-available-toggle sorti-box-available-toggle-expanded">
 	            <tr>
 		            <th>
-			            <span class="btn-info btn-action margin-none single pointer ${bsClasses.glyphicon.expanded}"><i></i></span>
+			            <span class="btn-action margin-none single pointer ${bsClasses.glyphicon.expanded}"><i></i></span>
 			            <span class="sorti-box-available-toggle-label">${options.labels.toggleAvailableOff}</span>
 		            </th>
 	            </tr>
@@ -695,7 +699,7 @@ require('../themes/default.pcss');
 
     var bindEvents = (function () {
         $.each(bindObjects, function (i, object) {
-            $('form')
+            $('body')
                 .off(object.event, object.element, object.function)
                 .on(object.event, object.element, object.function);
         });
