@@ -70,6 +70,9 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 /**
  * Creates boxes with selectable and sortable elements
  *
@@ -270,7 +273,7 @@ __webpack_require__(1);
      * @param optionsCustom
      */
     $.fn.sortiBoxes = function (optionsCustom) {
-        options = $.extend(options, (optionsCustom || {}));
+        options = $.extend(options, optionsCustom || {});
         setBootstrapClasses(options.bootstrapVersion);
 
         if (options.data.length) {
@@ -287,8 +290,7 @@ __webpack_require__(1);
                     options.callbackBoxesRendered();
                 }
             });
-        }
-        else {
+        } else {
             $('#notification-rules .boxes').html('');
             $('#notification-rules .well').show();
         }
@@ -296,49 +298,45 @@ __webpack_require__(1);
         bindEvents();
     };
 
-
     /**
      * Default options
      */
     var options = {
-        labels:                      {
-            toggleAvailableOn:  'Show available elements',
+        labels: {
+            toggleAvailableOn: 'Show available elements',
             toggleAvailableOff: 'Hide available elements',
             selectedBoxInitMsg: 'No elements selected'
         },
-        bootstrapVersion:            2,
-        colSpanName:                 4,
-        colSpanParam:                1,
+        bootstrapVersion: 2,
+        colSpanName: 4,
+        colSpanParam: 1,
         amountVisibleInAvailableBox: 10,
-        amountVisibleInSelectedBox:  5
+        amountVisibleInSelectedBox: 5
     };
-
 
     /**
      * Bootstrap classes
      */
     var bsClasses = {};
 
-
     /**
      * Defines Bootstrap classes depending on the used version
      *
      * @param bsVersion
      */
-    var setBootstrapClasses = function (bsVersion) {
+    var setBootstrapClasses = function setBootstrapClasses(bsVersion) {
         bsClasses = $.extend({}, {
-            row:       (bsVersion > 2 ? 'row' : 'row-fluid'),
-            col:       (bsVersion > 2 ? 'col-md-' : 'span'),
+            row: bsVersion > 2 ? 'row' : 'row-fluid',
+            col: bsVersion > 2 ? 'col-md-' : 'span',
             glyphicon: {
-                upArrow:   (bsVersion > 2 ? 'glyphicon glyphicon-up_arrow' : 'glyphicons up_arrow'),
-                downArrow: (bsVersion > 2 ? 'glyphicon glyphicon-down_arrow' : 'glyphicons down_arrow'),
-                remove:    (bsVersion > 2 ? 'glyphicon glyphicon-remove_2' : 'glyphicons remove_2'),
-                expanded:  (bsVersion > 2 ? 'glyphicon glyphicon-expand' : 'glyphicons expand'),
-                collapsed: (bsVersion > 2 ? 'glyphicon glyphicon-collapse' : 'glyphicons collapse'),
+                upArrow: bsVersion > 2 ? 'glyphicon glyphicon-up_arrow' : 'glyphicons up_arrow',
+                downArrow: bsVersion > 2 ? 'glyphicon glyphicon-down_arrow' : 'glyphicons down_arrow',
+                remove: bsVersion > 2 ? 'glyphicon glyphicon-remove_2' : 'glyphicons remove_2',
+                expanded: bsVersion > 2 ? 'glyphicon glyphicon-expand' : 'glyphicons expand',
+                collapsed: bsVersion > 2 ? 'glyphicon glyphicon-collapse' : 'glyphicons collapse'
             }
         });
     };
-
 
     /**
      * Renders all boxes to container based on options
@@ -346,14 +344,11 @@ __webpack_require__(1);
      * @param container
      * @param callback
      */
-    var renderBoxes = function (container, callback) {
+    var renderBoxes = function renderBoxes(container, callback) {
         var sections = [];
 
         $.each(options.data, function (sectionIndex, section) {
-            var _section = $('<div></div>')
-                .addClass('sorti-box-section')
-                .attr('rel', section.id)
-                .append(`<h5>${section.name}</h5>`);
+            var _section = $('<div></div>').addClass('sorti-box-section').attr('rel', section.id).append('<h5>' + section.name + '</h5>');
 
             $.each(section.boxes, function (boxIndex, box) {
                 // 1. MAIN PARTS:
@@ -367,65 +362,44 @@ __webpack_require__(1);
 
                 // 2. RENDER HEAD:
 
-                var _header = $(`<tr class="sorti-box-header ${bsClasses.row}">
-                                 <th class="name">
-                                 <span>${box.name}</span></th></tr>`);
+                var _header = $('<tr class="sorti-box-header ' + bsClasses.row + '">\n                                 <th class="name">\n                                 <span>' + box.name + '</span></th></tr>');
 
-                var _heading = $(`<tr class="sorti-box-heading ${bsClasses.row}"></tr>`);
-                _heading.append($(`<th class="${bsClasses.col}${options.colSpanName}"><span class="sorti-box-heading-param">Name</span></th>`));
+                var _heading = $('<tr class="sorti-box-heading ' + bsClasses.row + '"></tr>');
+                _heading.append($('<th class="' + bsClasses.col + options.colSpanName + '"><span class="sorti-box-heading-param">Name</span></th>'));
                 $.each(options.params, function (paramIndex, param) {
-                    _heading.append($(`<th class="${bsClasses.col}${options.colSpanParam}">
-                                        <span class="sorti-box-heading-param">
-                                            ${param.label}
-                                        </span>
-                                        </th>`));
+                    _heading.append($('<th class="' + bsClasses.col + options.colSpanParam + '">\n                                        <span class="sorti-box-heading-param">\n                                            ' + param.label + '\n                                        </span>\n                                        </th>'));
                 });
-                _heading.append($(`<th class="${bsClasses.col}${options.colSpanParam}"> </th>`));
+                _heading.append($('<th class="' + bsClasses.col + options.colSpanParam + '"> </th>'));
 
                 _boxHead.append(_header, _heading, $(options.additionalHeading));
 
                 // 3. RENDER AVAILABLE BOX TOGGLE:
 
-                var _boxToggleAvailable = `<thead class="sorti-box-available-toggle sorti-box-available-toggle-expanded">
-	            <tr>
-		            <th>
-			            <span class="btn-action margin-none single pointer ${bsClasses.glyphicon.expanded}"><i></i></span>
-			            <span class="sorti-box-available-toggle-label">${options.labels.toggleAvailableOff}</span>
-		            </th>
-	            </tr>
-	            </thead>`;
+                var _boxToggleAvailable = '<thead class="sorti-box-available-toggle sorti-box-available-toggle-expanded">\n\t            <tr>\n\t\t            <th>\n\t\t\t            <span class="btn-action margin-none single pointer ' + bsClasses.glyphicon.expanded + '"><i></i></span>\n\t\t\t            <span class="sorti-box-available-toggle-label">' + options.labels.toggleAvailableOff + '</span>\n\t\t            </th>\n\t            </tr>\n\t            </thead>';
 
                 // 4. RENDER CONTENT:
 
                 $.each(box.elements, function (elementIndex, element) {
-                    var _element = $(`<tr class="${bsClasses.row}"></tr>`).attr('rel', element.id);
-                    var _elementName = $(`<td class="name ${bsClasses.col}${options.colSpanName}"><span class="txt">${element.name}</span></td>`);
+                    var _element = $('<tr class="' + bsClasses.row + '"></tr>').attr('rel', element.id);
+                    var _elementName = $('<td class="name ' + bsClasses.col + options.colSpanName + '"><span class="txt">' + element.name + '</span></td>');
                     if (element.special) {
-                        _elementName.addClass('special')
+                        _elementName.addClass('special');
                     }
 
                     _element.append(_elementName);
 
                     $.each(options.params, function (paramIndex, param) {
-                        _element.append(`<td class="vals ${bsClasses.col}${options.colSpanParam}">${element.params[param.name]}</td>`);
+                        _element.append('<td class="vals ' + bsClasses.col + options.colSpanParam + '">' + element.params[param.name] + '</td>');
                     });
 
-                    _element.append(`<td class="${bsClasses.col}${options.colSpanParam} actions">
-                        <span class="toggleElement">
-                            <a href="#" class="${bsClasses.glyphicon.remove}"><i></i></a>
-                        </span>
-                        <span class="moveUpDown">
-                            <a href="#" class="moveUp ${bsClasses.glyphicon.upArrow}"><i></i></a>
-                            <a href="#" class="moveDown ${bsClasses.glyphicon.downArrow}"><i></i></a>
-                        </span>
-                        </td>`);
+                    _element.append('<td class="' + bsClasses.col + options.colSpanParam + ' actions">\n                        <span class="moveUpDown">\n                            <a href="#" class="moveUp ' + bsClasses.glyphicon.upArrow + '"><i></i></a>\n                            <a href="#" class="moveDown ' + bsClasses.glyphicon.downArrow + '"><i></i></a>\n                        </span>\n                        <span class="toggleElement">\n                            <a href="#" class="' + bsClasses.glyphicon.remove + '"><i></i></a>\n                        </span>\n                        </td>');
 
                     var _elementInAvailableBox = _element.clone();
                     _elementInAvailableBox.appendTo(_boxAvailableContent);
 
                     if (element.selected) {
                         _element.appendTo(_boxSelectedContent);
-                        _elementInAvailableBox.css({'display': 'none'});
+                        _elementInAvailableBox.css({ 'display': 'none' });
                     }
                 });
 
@@ -450,14 +424,13 @@ __webpack_require__(1);
         callback();
     };
 
-
     /**
      * Returns box container's height based on amount of elements
      *
      * @param amountElements
      * @return {number}
      */
-    var calculateContainerHeight = function (amountElements) {
+    var calculateContainerHeight = function calculateContainerHeight(amountElements) {
         var elements = $('.sorti-box-selected table tbody tr:not(.info)');
 
         var elementLowestHeight = Math.min.apply(null, $(elements).map(function () {
@@ -467,13 +440,12 @@ __webpack_require__(1);
         return elementLowestHeight * amountElements;
     };
 
-
     /**
      * Adjusts header's side padding to match scrollable box width
      *
      * @param thisBox
      */
-    var resizeBoxIfScrollAppears = function (thisBox) {
+    var resizeBoxIfScrollAppears = function resizeBoxIfScrollAppears(thisBox) {
         var boxHasScroll = false;
         var scrollWidth;
 
@@ -486,23 +458,20 @@ __webpack_require__(1);
         });
 
         if (boxHasScroll) {
-            $(thisBox).find('thead tr').css({'padding-right': scrollWidth + 'px'});
+            $(thisBox).find('thead tr').css({ 'padding-right': scrollWidth + 'px' });
 
             $(thisBox).find('tbody').each(function () {
                 // for each tbody without scroll:
                 if (!($(this)[0].scrollHeight > $(this).css('max-height').replace(/[^-\d\.]/g, ''))) {
-                    $(this).find('tr').css({'padding-right': scrollWidth + 'px'});
-                }
-                else {
+                    $(this).find('tr').css({ 'padding-right': scrollWidth + 'px' });
+                } else {
                     $(this).find('tr').css('padding-right', '');
                 }
             });
-        }
-        else {
+        } else {
             $(thisBox).find('tr').css('padding-right', '');
         }
     };
-
 
     /**
      * Returns box as jQuery element based on its child
@@ -510,10 +479,9 @@ __webpack_require__(1);
      * @param target
      * @return {$}
      */
-    var getBoxByTarget = function (target) {
+    var getBoxByTarget = function getBoxByTarget(target) {
         return $(target).closest('.sorti-box');
     };
-
 
     /**
      * Returns box as a jQuery element based on box ID
@@ -521,10 +489,9 @@ __webpack_require__(1);
      * @param id
      * @return {$}
      */
-    var getBoxById = function (id) {
-        return $(`.sorti-box[rel="${id}"]`);
+    var getBoxById = function getBoxById(id) {
+        return $('.sorti-box[rel="' + id + '"]');
     };
-
 
     /**
      * Returns true if box with given ID exists
@@ -532,21 +499,19 @@ __webpack_require__(1);
      * @param id
      * @return {bool}
      */
-    var boxExists = function (id) {
+    var boxExists = function boxExists(id) {
         return getBoxById(id).length;
     };
-
 
     /**
      * Selected Box methods only
      *
      */
     var selected = function () {
-        var adjustContainerHeight = function (thisBox) {
+        var adjustContainerHeight = function adjustContainerHeight(thisBox) {
             var newHeight = calculateContainerHeight(options.amountVisibleInSelectedBox);
-            thisBox.find('.sorti-box-selected tbody').css({'max-height': newHeight + 'px'});
+            thisBox.find('.sorti-box-selected tbody').css({ 'max-height': newHeight + 'px' });
         };
-
 
         /**
          * Returns selected elements
@@ -554,7 +519,7 @@ __webpack_require__(1);
          * @param eventId
          * @return {Array}
          */
-        var get = function (eventId) {
+        var get = function get(eventId) {
             var thisBox = getBoxById(eventId);
             var selectedTriggers = [];
 
@@ -565,28 +530,25 @@ __webpack_require__(1);
             return selectedTriggers;
         };
 
-
         /**
          * Clears all selected elements
          *
          * @param thisBox
          */
-        var clear = function (thisBox) {
+        var clear = function clear(thisBox) {
             thisBox.find('.sorti-box-selected table tbody').html('');
         };
-
 
         /**
          * Moves selected element back to available box
          *
          * @param thisBox
          */
-        var unselect = function (thisBox) {
+        var unselect = function unselect(thisBox) {
             thisBox.find('.sorti-box-selected table tbody tr:not(.info)').each(function () {
                 $(this).appendTo(thisBox.find('.sorti-box-available table tbody'));
             });
         };
-
 
         /**
          * Moves available element to selected box
@@ -594,15 +556,15 @@ __webpack_require__(1);
          * @param e
          * @return {boolean}
          */
-        var moveToAvailable = function (e) {
+        var moveToAvailable = function moveToAvailable(e) {
             var thisBox = getBoxByTarget(e.target);
 
             var boxAvailable = $(thisBox).find('.sorti-box-available table tbody');
             var boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
             var row = $(e.target).closest('tr');
 
-            boxAvailable.find(`tr[rel="${row.attr('rel')}"]`).show();
-            boxSelected.find(`tr[rel="${row.attr('rel')}"]`).remove();
+            boxAvailable.find('tr[rel="' + row.attr('rel') + '"]').show();
+            boxSelected.find('tr[rel="' + row.attr('rel') + '"]').remove();
 
             toggleInitInfo(thisBox);
             resizeBoxIfScrollAppears(thisBox);
@@ -612,52 +574,46 @@ __webpack_require__(1);
             return false;
         };
 
-
         /**
          * Moves element up or down
          *
          * @param e
          */
-        var moveUpDown = function (e) {
+        var moveUpDown = function moveUpDown(e) {
             e.preventDefault();
             var a = e.target.parentElement;
             var row = $(a).closest('tr');
 
             if ($(a).hasClass('moveUp')) {
                 $(row).insertBefore($(row).prev());
-            }
-            else if ($(a).hasClass('moveDown')) {
+            } else if ($(a).hasClass('moveDown')) {
                 $(row).insertAfter($(row).next());
             }
         };
-
 
         /**
          * Shows or hides text about no elements
          *
          * @param thisBox
          */
-        var toggleInitInfo = function (thisBox) {
+        var toggleInitInfo = function toggleInitInfo(thisBox) {
             var boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
 
-            if (!(boxSelected.find('tr').length)) {
-                boxSelected.html(`<tr class="info"><td>${options.labels.selectedBoxInitMsg}</td></tr>`);
-            }
-            else if (boxSelected.find('tr').length && boxSelected.find('.info').length) {
+            if (!boxSelected.find('tr').length) {
+                boxSelected.html('<tr class="info"><td>' + options.labels.selectedBoxInitMsg + '</td></tr>');
+            } else if (boxSelected.find('tr').length && boxSelected.find('.info').length) {
                 boxSelected.find('.info').remove();
             }
         };
 
-
         return {
             adjustContainerHeight: adjustContainerHeight,
-            moveToAvailable:       moveToAvailable,
-            moveUpDown:            moveUpDown,
-            get:                   get,
-            toggleInitInfo:        toggleInitInfo
-        }
+            moveToAvailable: moveToAvailable,
+            moveUpDown: moveUpDown,
+            get: get,
+            toggleInitInfo: toggleInitInfo
+        };
     }();
-
 
     /**
      * Available Box methods only
@@ -669,28 +625,26 @@ __webpack_require__(1);
          *
          * @param thisBox
          */
-        var adjustContainerHeight = function (thisBox) {
+        var adjustContainerHeight = function adjustContainerHeight(thisBox) {
             var newHeight = calculateContainerHeight(options.amountVisibleInAvailableBox);
-            thisBox.find('.sorti-box-available tbody').css({'max-height': newHeight + 'px'});
+            thisBox.find('.sorti-box-available tbody').css({ 'max-height': newHeight + 'px' });
         };
-
 
         /**
          * Sorts elements in given box alphabetically
          *
          * @param thisBox
          */
-        var sortAlphabetically = function (thisBox) {
+        var sortAlphabetically = function sortAlphabetically(thisBox) {
             var elements = $(thisBox).find('.sorti-box-available table tbody tr');
 
             elements.detach().sort(function (a, b) {
                 var at = $(a).find('.name').text();
                 var bt = $(b).find('.name').text();
-                return (at > bt) ? 1 : ((at < bt) ? -1 : 0);
+                return at > bt ? 1 : at < bt ? -1 : 0;
             });
             elements.appendTo($(thisBox).find('.sorti-box-available table tbody'));
         };
-
 
         /**
          * Moves element to selected box
@@ -698,7 +652,7 @@ __webpack_require__(1);
          * @param e
          * @return {boolean}
          */
-        var moveToSelected = function (e) {
+        var moveToSelected = function moveToSelected(e) {
             var thisBox = getBoxByTarget(e.target);
             var boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
 
@@ -717,69 +671,56 @@ __webpack_require__(1);
             return false;
         };
 
-
         /**
          * Shows or hides available box
          *
          * @param e
          */
-        var toggleBox = function (e) {
+        var toggleBox = function toggleBox(e) {
             var thisBox = getBoxByTarget(e.target);
             var boxAvailableToggle = thisBox.find('.sorti-box-available-toggle');
             thisBox.find('.sorti-box-available tbody').toggle();
             boxAvailableToggle.find('.btn-action').toggleClass(bsClasses.glyphicon.collapsed).toggleClass(bsClasses.glyphicon.expanded);
             boxAvailableToggle.toggleClass('sorti-box-available-toggle-collapsed').toggleClass('sorti-box-available-toggle-expanded');
 
-            thisBox.find('.sorti-box-available-toggle .sorti-box-available-toggle-label')
-                .text(boxAvailableToggle.hasClass('sorti-box-available-toggle-collapsed') ?
-                    options.labels.toggleAvailableOn : options.labels.toggleAvailableOff);
+            thisBox.find('.sorti-box-available-toggle .sorti-box-available-toggle-label').text(boxAvailableToggle.hasClass('sorti-box-available-toggle-collapsed') ? options.labels.toggleAvailableOn : options.labels.toggleAvailableOff);
         };
-
 
         return {
             adjustContainerHeight: adjustContainerHeight,
-            moveToSelected:        moveToSelected,
-            toggleBox:             toggleBox,
-            sortAlphabetically:    sortAlphabetically,
-        }
+            moveToSelected: moveToSelected,
+            toggleBox: toggleBox,
+            sortAlphabetically: sortAlphabetically
+        };
     }();
 
+    var bindObjects = [{
+        event: 'click',
+        element: '.sorti-box-available .toggleElement a',
+        function: available.moveToSelected
+    }, {
+        event: 'click',
+        element: '.sorti-box-selected .toggleElement a',
+        function: selected.moveToAvailable
+    }, {
+        event: 'click',
+        element: '.sorti-box-selected .moveUpDown a',
+        function: selected.moveUpDown
+    }, {
+        event: 'click',
+        element: '.sorti-box-available-toggle',
+        function: available.toggleBox
+    }];
 
-    var bindObjects = [
-        {
-            event:    'click',
-            element:  '.sorti-box-available .toggleElement a',
-            function: available.moveToSelected
-        },
-        {
-            event:    'click',
-            element:  '.sorti-box-selected .toggleElement a',
-            function: selected.moveToAvailable
-        },
-        {
-            event:    'click',
-            element:  '.sorti-box-selected .moveUpDown a',
-            function: selected.moveUpDown
-        },
-        {
-            event:    'click',
-            element:  '.sorti-box-available-toggle',
-            function: available.toggleBox
-        }
-    ];
-
-
-    var bindEvents = (function () {
+    var bindEvents = function bindEvents() {
         $.each(bindObjects, function (i, object) {
-            $('body')
-                .off(object.event, object.element, object.function)
-                .on(object.event, object.element, object.function);
+            $('body').off(object.event, object.element, object.function).on(object.event, object.element, object.function);
         });
 
         if (navigator.platform.match('Mac') !== null) {
             $('body').addClass('OSX');
         }
-    });
+    };
 })(jQuery);
 
 /***/ }),

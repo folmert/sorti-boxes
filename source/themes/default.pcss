@@ -21,6 +21,8 @@
   --size-outer-height-element: calc(var(--size-min-height-element) + 1);
   --size-max-height-selected-box: calc(var(--size-outer-height-element) * var(--amount-visible-in-selected-box));
   --size-max-height-available-box: calc(var(--size-outer-height-element) * var(--amount-visible-in-available-box));
+
+  --padding-left-name: 30px;
 }
 
 .centerContentVertically {
@@ -38,7 +40,7 @@
 
   /* full-width & no margin column scaffolding */
   .row-fluid {
-    display: block;
+    display: flex; /* makes row full width and all its cells same height */
 
     @for $i from 1 to 12 {
       .span$i {
@@ -55,7 +57,7 @@
 
   .moveUpDown {
     a {
-      padding: 8px 9px;
+      padding: 0;
 
       i:before {
         color: var(--color-gray-12);
@@ -77,6 +79,15 @@
     display: block;
     border: 1px solid var(--color-gray-9);
 
+    th, td {
+      text-align: center;
+      border-top: none;
+
+      &.vals {
+        justify-content: flex-end;
+      }
+    }
+
     &.sorti-box-available .toggleElement a i:before {
       /* select/add */
       content: "\e191";
@@ -87,27 +98,6 @@
       /* remove */
       content: "\e208";
       color: var(--color-red-dark);
-    }
-
-    .toggleElement {
-      float: right;
-
-      a {
-        text-align: center;
-        font-size: 30px;
-        height: 100%;
-        display: block;
-        padding: 5px 0 5px 25px;
-
-        &:hover {
-          text-decoration: none;
-        }
-
-        i:before {
-          top: 10px;
-          font-size: 14px;
-        }
-      }
     }
 
     table {
@@ -131,7 +121,6 @@
         tr {
           background: white;
           box-sizing: border-box;
-          line-height: 33px;
 
           th {
             font-weight: normal;
@@ -161,14 +150,45 @@
               border-left: 1px solid var(--color-gray-5);
             }
 
-            &.vals {
-              line-height: 34px;
+            &.actions {
+              .glyphicons {
+                i:before {
+                  position: static;
+                  height: 20px;
+                  line-height: 20px;
+                }
+
+                &:hover {
+                  text-decoration: none;
+                }
+              }
+
+              position: relative;
+
+              .toggleElement {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                width: 15px;
+                height: 20px;
+
+                a.glyphicons {
+                  padding: 0;
+                  text-align: center;
+                  height: 100%;
+                  display: block;
+
+                  i:before {
+                    font-size: 14px;
+                  }
+                }
+              }
             }
 
             &.name {
-              padding-left: 30px;
+              padding-left: var(--padding-left-name);
               padding-right: 20px;
-              line-height: 1.3;
+              line-height: 1;
 
               &:not(.special) {
                 position: relative;
@@ -186,9 +206,7 @@
               }
 
               .txt {
-                padding: 5px 20px 5px 30px;
-                height: 30px;
-                line-height: 16px;
+                line-height: 1;
                 text-align: left;
               }
             }
@@ -200,7 +218,6 @@
     &.sorti-box-selected {
       .moveUpDown {
         float: none;
-        line-height: 40px;
       }
 
       tr:first-child .moveUp,
@@ -237,8 +254,10 @@
             border-bottom: none;
 
             td {
+              background: white; /* bootstrap overwrites background on .info */
               width: 100%;
               line-height: 41px;
+              justify-content: center;
             }
           }
         }
@@ -249,10 +268,25 @@
       border-top: none;
 
       .sorti-box-available-toggle {
-        border-bottom: 1px solid var(--color-gray-6);
+        border-bottom: 1px solid var(--color-gray-9);
         cursor: pointer;
+        @extend .centerContentVertically;
+
+        .glyphicons {
+          padding: 0;
+
+          /* fix for bootstrap's .collapse overwrite: it has height:20px and overflow:hidden */
+          height: 20px;
+          overflow: visible;
+
+          i:before {
+            font-size: 14px;
+            top: 9px;
+          }
+        }
 
         &-label {
+          padding-left: 18px;
           color: var(--color-gray-12);
           font-size: 12px;
           font-weight: 400
@@ -277,14 +311,6 @@
           &:hover {
             background: var(--color-gray-4);
           }
-
-          td {
-            &.vals {
-              input {
-                display: none;
-              }
-            }
-          }
         }
       }
     }
@@ -294,7 +320,7 @@
     border-bottom: 1px solid var(--color-gray-6);
 
     .name {
-      padding: 0 0 0 10px;
+      padding: 10px;
 
       span {
         color: black;

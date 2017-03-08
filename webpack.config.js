@@ -14,7 +14,16 @@ module.exports = function () {
                     loader: ExtractTextPlugin.extract({
                         loader: ['css-loader?sourceMap', 'postcss-loader?sourceMap&config=./']
                     })
-                }
+                },
+
+                {
+                    test:    /\.js$/,
+                    exclude: /node_modules/,
+                    loader:  'babel-loader',
+                    query:   {
+                        presets: [require('babel-preset-es2015')]
+                    }
+                },
             ]
         },
 

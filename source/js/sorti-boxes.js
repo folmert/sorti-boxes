@@ -339,12 +339,12 @@ require('../themes/default.pcss');
                     });
 
                     _element.append(`<td class="${bsClasses.col}${options.colSpanParam} actions">
-                        <span class="toggleElement">
-                            <a href="#" class="${bsClasses.glyphicon.remove}"><i></i></a>
-                        </span>
                         <span class="moveUpDown">
                             <a href="#" class="moveUp ${bsClasses.glyphicon.upArrow}"><i></i></a>
                             <a href="#" class="moveDown ${bsClasses.glyphicon.downArrow}"><i></i></a>
+                        </span>
+                        <span class="toggleElement">
+                            <a href="#" class="${bsClasses.glyphicon.remove}"><i></i></a>
                         </span>
                         </td>`);
 
