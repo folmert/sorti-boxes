@@ -211,7 +211,9 @@ require('../themes/default.pcss');
                     resizeBoxIfScrollAppears($(this));
                 });
 
-                options.callbackBoxesRendered();
+                if (typeof options.callbackBoxesRendered == 'function') {
+                    options.callbackBoxesRendered();
+                }
             });
         }
         else {
@@ -227,14 +229,14 @@ require('../themes/default.pcss');
      * Default options
      */
     var options = {
-        labels: {
+        labels:                      {
             toggleAvailableOn:  'Show available elements',
             toggleAvailableOff: 'Hide available elements',
             selectedBoxInitMsg: 'No elements selected'
         },
-        bootstrapVersion: 2,
-        colSpanName:      4,
-        colSpanParam:     1,
+        bootstrapVersion:            2,
+        colSpanName:                 4,
+        colSpanParam:                1,
         amountVisibleInAvailableBox: 10,
         amountVisibleInSelectedBox:  5
     };
@@ -298,7 +300,7 @@ require('../themes/default.pcss');
                                  <span>${box.name}</span></th></tr>`);
 
                 var _heading = $(`<tr class="sorti-box-heading ${bsClasses.row}"></tr>`);
-                _heading.append($(`<th class="${bsClasses.col}${options.colSpanName}">Name</th>`));
+                _heading.append($(`<th class="${bsClasses.col}${options.colSpanName}"><span class="sorti-box-heading-param">Name</span></th>`));
                 $.each(options.params, function (paramIndex, param) {
                     _heading.append($(`<th class="${bsClasses.col}${options.colSpanParam}">${param.label}</th>`));
                 });

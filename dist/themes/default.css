@@ -86,7 +86,6 @@
 
 .sorti-box .sorti-box-half table thead tr th {
   font-weight: normal;
-  line-height: 1.5;
 }
 
 .sorti-box .sorti-box-half table tbody {
@@ -100,12 +99,13 @@
 }
 
 .sorti-box .sorti-box-half table tbody tr td {
+  text-align: center;
   min-height: 42px;
   display: table-cell;
   -webkit-box-align: stretch;
   -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
   box-sizing: border-box;
   float: left;
   border-right: 1px solid rgb(229, 229, 229)
@@ -218,12 +218,12 @@
 }
 
 .sorti-box .sorti-box-half.sorti-box-available .sorti-box-available-toggle {
-  border-bottom: 1px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(221, 221, 221);
   cursor: pointer;
 }
 
 .sorti-box .sorti-box-half.sorti-box-available .sorti-box-available-toggle-label {
-  color: rgb(130, 130, 130);
+  color: rgb(124, 124, 124);
   font-size: 12px;
   font-weight: 400;
 }
@@ -255,22 +255,38 @@
   background: rgb(236, 236, 236);
 }
 
-.sorti-box-header {
-  border-bottom: 1px solid rgb(211, 211, 211);
+.sorti-box .sorti-box-header {
+  border-bottom: 1px solid rgb(221, 221, 221);
 }
 
-.sorti-box-header .name {
+.sorti-box .sorti-box-header .name {
   padding: 0 0 0 10px;
 }
 
-.sorti-box-header .name span {
+.sorti-box .sorti-box-header .name span {
   color: black;
   font-weight: bold;
   font-size: 20px;
 }
 
-.sorti-box-heading tr {
+.sorti-box .sorti-box-heading th {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.sorti-box .sorti-box-heading tr {
   padding-top: 10px;
+}
+
+.sorti-box .sorti-box-heading-param {
+  line-height: 1.5;
+  width: 100%;
 }
 
 @media (max-width: 767px) {

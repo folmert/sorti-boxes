@@ -116,7 +116,6 @@
 
           th {
             font-weight: normal;
-            line-height: 1.5;
           }
         }
       }
@@ -130,6 +129,7 @@
           border-bottom: 1px solid var(--color-gray-7);
 
           td {
+            text-align: center;
             min-height: var(--size-min-height-element);
             display: table-cell;
             align-items: stretch;
@@ -277,7 +277,7 @@
     }
   }
 
-  &-header {
+  .sorti-box-header {
     border-bottom: 1px solid var(--color-gray-6);
 
     .name {
@@ -291,7 +291,17 @@
     }
   }
 
-  &-heading {
+  .sorti-box-heading {
+    th {
+      display: flex;
+      align-items: center;
+    }
+
+    &-param {
+      line-height: 1.5;
+      width: 100%;
+    }
+
     tr {
       padding-top: 10px;
     }
