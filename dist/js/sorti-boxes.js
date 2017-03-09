@@ -251,8 +251,7 @@
             selectedBoxInitMsg: 'No elements selected'
         },
         bootstrapVersion: 2,
-        colSpanName:      4,
-        colSpanParam:     1,
+        colWidthName:      4,
         amountVisibleInAvailableBox: 10,
         amountVisibleInSelectedBox:  5,
         callbackElementMoved: function () {
@@ -308,8 +307,7 @@ __webpack_require__(1);
             selectedBoxInitMsg: 'No elements selected'
         },
         bootstrapVersion: 2,
-        colSpanName: 4,
-        colSpanParam: 1,
+        colWidthName: '33.33%',
         amountVisibleInAvailableBox: 10,
         amountVisibleInSelectedBox: 5
     };
@@ -325,17 +323,35 @@ __webpack_require__(1);
      * @param bsVersion
      */
     var setBootstrapClasses = function setBootstrapClasses(bsVersion) {
-        bsClasses = $.extend({}, {
-            row: bsVersion > 2 ? 'row' : 'row-fluid',
-            col: bsVersion > 2 ? 'col-md-' : 'span',
-            glyphicon: {
-                upArrow: bsVersion > 2 ? 'glyphicon glyphicon-up_arrow' : 'glyphicons up_arrow',
-                downArrow: bsVersion > 2 ? 'glyphicon glyphicon-down_arrow' : 'glyphicons down_arrow',
-                remove: bsVersion > 2 ? 'glyphicon glyphicon-remove_2' : 'glyphicons remove_2',
-                expanded: bsVersion > 2 ? 'glyphicon glyphicon-expand' : 'glyphicons expand',
-                collapsed: bsVersion > 2 ? 'glyphicon glyphicon-collapse' : 'glyphicons collapse'
-            }
-        });
+        switch (bsVersion) {
+            case 2:
+                bsClasses = $.extend({}, {
+                    row: 'row-fluid',
+                    col: 'span',
+                    glyphicon: {
+                        upArrow: 'glyphicons up_arrow',
+                        downArrow: 'glyphicons down_arrow',
+                        remove: 'glyphicons remove_2',
+                        expanded: 'glyphicons expand',
+                        collapsed: 'glyphicons collapse'
+                    }
+                });
+                break;
+
+            case 3:
+                bsClasses = $.extend({}, {
+                    row: 'row',
+                    col: 'col-md-',
+                    glyphicon: {
+                        upArrow: 'glyphicon glyphicon-up_arrow',
+                        downArrow: 'glyphicon glyphicon-down_arrow',
+                        remove: 'glyphicon glyphicon-remove_2',
+                        expanded: 'glyphicon glyphicon-expand',
+                        collapsed: 'glyphicon glyphicon-collapse'
+                    }
+                });
+                break;
+        }
     };
 
     /**
@@ -365,13 +381,13 @@ __webpack_require__(1);
                 var _header = $('<tr class="sorti-box-header ' + bsClasses.row + '">\n                                 <th class="name">\n                                 <span>' + box.name + '</span></th></tr>');
 
                 var _heading = $('<tr class="sorti-box-heading ' + bsClasses.row + '"></tr>');
-                _heading.append($('<th class="' + bsClasses.col + options.colSpanName + '"><span class="sorti-box-heading-param">Name</span></th>'));
+                _heading.append($('<th><span class="sorti-box-heading-param">Name</span></th>'));
                 $.each(options.params, function (paramIndex, param) {
-                    _heading.append($('<th class="' + bsClasses.col + options.colSpanParam + '">\n                                        <span class="sorti-box-heading-param">\n                                            ' + param.label + '\n                                        </span>\n                                        </th>'));
+                    _heading.append($('<th class="vals">\n                                        <span class="sorti-box-heading-param">\n                                            ' + param.label + '\n                                        </span>\n                                        </th>'));
                 });
-                _heading.append($('<th class="' + bsClasses.col + options.colSpanParam + '"> </th>'));
+                _heading.append($('<th class="actions"> </th>'));
 
-                _boxHead.append(_header, _heading, $(options.additionalHeading));
+                _boxHead.append(_header, _heading, $(options.additionalHeading) || '');
 
                 // 3. RENDER AVAILABLE BOX TOGGLE:
 
@@ -381,7 +397,7 @@ __webpack_require__(1);
 
                 $.each(box.elements, function (elementIndex, element) {
                     var _element = $('<tr class="' + bsClasses.row + '"></tr>').attr('rel', element.id);
-                    var _elementName = $('<td class="name ' + bsClasses.col + options.colSpanName + '"><span class="txt">' + element.name + '</span></td>');
+                    var _elementName = $('<td class="name"><span class="txt">' + element.name + '</span></td>');
                     if (element.special) {
                         _elementName.addClass('special');
                     }
@@ -389,10 +405,10 @@ __webpack_require__(1);
                     _element.append(_elementName);
 
                     $.each(options.params, function (paramIndex, param) {
-                        _element.append('<td class="vals ' + bsClasses.col + options.colSpanParam + '">' + element.params[param.name] + '</td>');
+                        _element.append('<td class="vals">' + element.params[param.name] + '</td>');
                     });
 
-                    _element.append('<td class="' + bsClasses.col + options.colSpanParam + ' actions">\n                        <span class="moveUpDown">\n                            <a href="#" class="moveUp ' + bsClasses.glyphicon.upArrow + '"><i></i></a>\n                            <a href="#" class="moveDown ' + bsClasses.glyphicon.downArrow + '"><i></i></a>\n                        </span>\n                        <span class="toggleElement">\n                            <a href="#" class="' + bsClasses.glyphicon.remove + '"><i></i></a>\n                        </span>\n                        </td>');
+                    _element.append('<td class="actions">\n                        <span class="moveUpDown">\n                            <a href="#" class="moveUp ' + bsClasses.glyphicon.upArrow + '"><i></i></a>\n                            <a href="#" class="moveDown ' + bsClasses.glyphicon.downArrow + '"><i></i></a>\n                        </span>\n                        <span class="toggleElement">\n                            <a href="#" class="' + bsClasses.glyphicon.remove + '"><i></i></a>\n                        </span>\n                        </td>');
 
                     var _elementInAvailableBox = _element.clone();
                     _elementInAvailableBox.appendTo(_boxAvailableContent);
@@ -410,6 +426,13 @@ __webpack_require__(1);
                 _boxAvailable.find('table').append(_boxToggleAvailable);
                 _boxAvailable.find('table').append(_boxAvailableContent);
                 _box.append(_boxSelected, _boxAvailable);
+
+                // 6 : SET NAME COL WIDTH:
+
+                _box.find('tr td:first-child, tr th:first-child').css({ 'width': options.colWidthName });
+
+                // 7. APPEND TO SECTION:
+
                 _section.append(_box);
             });
 
@@ -434,7 +457,6 @@ __webpack_require__(1);
         var elements = $('.sorti-box-selected table tbody tr:not(.info)');
 
         var elementLowestHeight = Math.min.apply(null, $(elements).map(function () {
-            console.log($(this).outerHeight());
             return $(this).outerHeight() + 1; // add border-bottom for each
         }).get());
 
@@ -569,7 +591,9 @@ __webpack_require__(1);
             toggleInitInfo(thisBox);
             resizeBoxIfScrollAppears(thisBox);
 
-            options.callbackElementMoved(thisBox);
+            if (typeof options.callbackElementMoved == 'function') {
+                options.callbackElementMoved(thisBox);
+            }
 
             return false;
         };
@@ -665,7 +689,9 @@ __webpack_require__(1);
             selected.toggleInitInfo(thisBox);
             resizeBoxIfScrollAppears(thisBox);
 
-            options.callbackElementMoved(thisBox);
+            if (typeof options.callbackElementMoved == 'function') {
+                options.callbackElementMoved(thisBox);
+            }
 
             return false;
         };

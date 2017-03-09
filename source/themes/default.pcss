@@ -43,16 +43,9 @@
   .row-fluid {
     display: flex; /* makes row full width and all its cells same height */
 
-    @for $i from 1 to 12 {
-      .span$i {
-        width: calc($i / 12 * 100%);
-      }
-    }
-
     th, td {
       float: left;
       box-sizing: border-box;
-      display: block;
     }
   }
 
@@ -83,8 +76,10 @@
     th, td {
       text-align: center;
       border-top: none;
+      margin: 0;
 
-      &.vals {
+      &.vals, &.valInfo {
+        flex: 1;
         justify-content: flex-end;
       }
     }
@@ -106,6 +101,11 @@
       table-layout: fixed;
       width: 100%;
       word-wrap: break-word;
+
+      .actions {
+        width: 100px;
+        min-width: 100px;
+      }
 
       thead {
         margin: 0;
@@ -281,7 +281,9 @@
         @extend .centerContentVertically;
 
         .glyphicons {
+          width: 0;
           padding: 0;
+          position: static;
 
           /* fix for bootstrap's .collapse overwrite: it has height:20px and overflow:hidden */
           height: 20px;
@@ -324,6 +326,7 @@
     border-bottom: 1px solid var(--color-gray-6);
 
     .name {
+      text-align: left;
       padding: 10px;
 
       span {
