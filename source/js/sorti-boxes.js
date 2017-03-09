@@ -211,6 +211,8 @@ require('../themes/default.pcss');
                     resizeBoxIfScrollAppears($(this));
                 });
 
+                bindEvents();
+
                 if (typeof options.callbackBoxesRendered == 'function') {
                     options.callbackBoxesRendered();
                 }
@@ -220,8 +222,6 @@ require('../themes/default.pcss');
             $('#notification-rules .boxes').html('');
             $('#notification-rules .well').show();
         }
-
-        bindEvents();
     };
 
 
@@ -389,10 +389,10 @@ require('../themes/default.pcss');
         var elements = $('.sorti-box-selected table tbody tr:not(.info)');
 
         var elementLowestHeight = Math.min.apply(null, $(elements).map(function () {
-            return $(this).outerHeight();
+            return $(this).outerHeight() + 1; // add border-bottom for each
         }).get());
 
-        return elementLowestHeight * amountElements;
+        return (elementLowestHeight * amountElements) - 1; // last row doesn't have bottom border
     };
 
 
@@ -467,7 +467,6 @@ require('../themes/default.pcss');
 
     /**
      * Selected Box methods only
-     *
      */
     var selected = function () {
         var adjustContainerHeight = function (thisBox) {
@@ -589,7 +588,6 @@ require('../themes/default.pcss');
 
     /**
      * Available Box methods only
-     *
      */
     var available = function () {
         /**

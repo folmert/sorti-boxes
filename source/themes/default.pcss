@@ -13,6 +13,7 @@
   --color-gray-10: rgb(158, 158, 158);
   --color-gray-11: rgb(153, 153, 153);
   --color-gray-12: rgb(124, 124, 124);
+  --color-gray-13: rgb(211, 211, 211);
 
   --amount-visible-in-available-box: 10;
   --amount-visible-in-selected-box: 5;
@@ -77,7 +78,7 @@
     background: var(--color-gray-1);
     overflow-x: hidden;
     display: block;
-    border: 1px solid var(--color-gray-9);
+    border: 3px double var(--color-gray-13);
 
     th, td {
       text-align: center;
@@ -136,6 +137,10 @@
           box-sizing: border-box;
           border-bottom: 1px solid var(--color-gray-7);
 
+          &:last-child {
+            border-bottom: none;
+          }
+
           td {
             text-align: center;
             min-height: var(--size-min-height-element);
@@ -166,9 +171,7 @@
               position: relative;
 
               .toggleElement {
-                position: absolute;
-                top: 8px;
-                right: 8px;
+                padding-left: 25px;
                 width: 15px;
                 height: 20px;
 
@@ -190,18 +193,19 @@
               padding-right: 20px;
               line-height: 1;
 
-              &:not(.special) {
+              &.special {
                 position: relative;
 
                 &:before {
                   color: var(--color-red);
                   content: '\00B7';
                   overflow: hidden;
-                  position: absolute;
-                  left: 10px;
                   font-size: 50px;
                   height: 100%;
                   line-height: 80%;
+                  position: absolute;
+                  top: 0px;
+                  left: 10px;
                 }
               }
 
@@ -267,6 +271,10 @@
     &.sorti-box-available {
       border-top: none;
 
+      .moveUpDown {
+        visibility: hidden;
+      }
+
       .sorti-box-available-toggle {
         border-bottom: 1px solid var(--color-gray-9);
         cursor: pointer;
@@ -293,15 +301,11 @@
         }
       }
 
-      .moveUpDown {
-        display: none;
-      }
-
       tbody {
         max-height: var(--size-max-height-available-box);
 
         tr {
-          background: var(--color-gray-1);
+          background: var(--color-gray-3);
           color: var(--color-gray-11);
 
           &:nth-child(even) {
@@ -340,9 +344,6 @@
       width: 100%;
     }
 
-    tr {
-      padding-top: 10px;
-    }
   }
 }
 
