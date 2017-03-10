@@ -51,12 +51,17 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'log-reporter'],
+        reporters: ['progress', 'log-reporter', 'coverage', 'coveralls'],
+        
+        coverageReporter: {
+            type: 'lcov', // lcov or lcovonly are required for generating lcov.info files 
+            dir: 'coverage/'
+        }
 
-        "logReporter": {
-            "outputPath":  "test/some/path/",
-            "logFileName": "logfile.log",
-            "filter_key":  "log-filter"
+        logReporter: {
+            outputPath:  "test/some/path/",
+            logFileName: "logfile.log",
+            filter_key:  "log-filter"
         },
 
         // web server port
