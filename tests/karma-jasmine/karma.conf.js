@@ -76,6 +76,8 @@ module.exports = function (config) {
             'karma-fixture',
             'karma-log-reporter',
             'karma-chrome-launcher',
+            'karma-coverage',
+            'karma-coveralls',
         ],
 
 
