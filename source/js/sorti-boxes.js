@@ -201,27 +201,19 @@ require('../themes/default.pcss');
         options = $.extend(options, (optionsCustom || {}));
         setBootstrapClasses(options.bootstrapVersion);
 
-        if (options.data.length) {
-            $('#notification-rules .well').hide();
-
-            renderBoxes(this, function () {
-                $('.sorti-box').each(function () {
-                    selected.adjustContainerHeight($(this));
-                    available.adjustContainerHeight($(this));
-                    resizeBoxIfScrollAppears($(this));
-                });
-
-                bindEvents();
-
-                if (typeof options.callbackBoxesRendered == 'function') {
-                    options.callbackBoxesRendered();
-                }
+        renderBoxes(this, function () {
+            $('.sorti-box').each(function () {
+                selected.adjustContainerHeight($(this));
+                available.adjustContainerHeight($(this));
+                resizeBoxIfScrollAppears($(this));
             });
-        }
-        else {
-            $('#notification-rules .boxes').html('');
-            $('#notification-rules .well').show();
-        }
+
+            bindEvents();
+
+            if (typeof options.callbackBoxesRendered == 'function') {
+                options.callbackBoxesRendered();
+            }
+        });
     };
 
 
@@ -479,17 +471,6 @@ require('../themes/default.pcss');
 
 
     /**
-     * Returns true if box with given ID exists
-     *
-     * @param id
-     * @return {bool}
-     */
-    var boxExists = function (id) {
-        return getBoxById(id).length;
-    };
-
-
-    /**
      * Selected Box methods only
      */
     var selected = function () {
@@ -514,28 +495,6 @@ require('../themes/default.pcss');
             });
 
             return selectedTriggers;
-        };
-
-
-        /**
-         * Clears all selected elements
-         *
-         * @param thisBox
-         */
-        var clear = function (thisBox) {
-            thisBox.find('.sorti-box-selected table tbody').html('');
-        };
-
-
-        /**
-         * Moves selected element back to available box
-         *
-         * @param thisBox
-         */
-        var unselect = function (thisBox) {
-            thisBox.find('.sorti-box-selected table tbody tr:not(.info)').each(function () {
-                $(this).appendTo(thisBox.find('.sorti-box-available table tbody'));
-            });
         };
 
 
@@ -628,23 +587,6 @@ require('../themes/default.pcss');
 
 
         /**
-         * Sorts elements in given box alphabetically
-         *
-         * @param thisBox
-         */
-        var sortAlphabetically = function (thisBox) {
-            var elements = $(thisBox).find('.sorti-box-available table tbody tr');
-
-            elements.detach().sort(function (a, b) {
-                var at = $(a).find('.name').text();
-                var bt = $(b).find('.name').text();
-                return (at > bt) ? 1 : ((at < bt) ? -1 : 0);
-            });
-            elements.appendTo($(thisBox).find('.sorti-box-available table tbody'));
-        };
-
-
-        /**
          * Moves element to selected box
          *
          * @param e
@@ -693,8 +635,7 @@ require('../themes/default.pcss');
         return {
             adjustContainerHeight: adjustContainerHeight,
             moveToSelected:        moveToSelected,
-            toggleBox:             toggleBox,
-            sortAlphabetically:    sortAlphabetically,
+            toggleBox:             toggleBox
         }
     }();
 
