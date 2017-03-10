@@ -206,3 +206,7 @@ var options = {
         }
 };
 ```
+
+## Tests
+
+  `npm test`
