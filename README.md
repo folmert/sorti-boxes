@@ -3,6 +3,15 @@ Sorti Boxes
 =========
 
 Creates boxes with selectable and sortable elements. Requires jQuery 1.7+ and Bootstrap 2+.
+- possible to define custom params
+- data organized by multiple sections, each containing multiple boxes
+- elements beside params can use additional options: special, selected and status
+- possible to add optional additional heading
+- possible to define custom texts (i.e. for showing / hiding available elements)
+- possible to define custom column width for element names (in px or %)
+- possible to define amount of visible elements (to define when the container should be scrollable)
+- possible to define custom callback function after box are rendered and elements are moved
+- supports both Bootstrap 2 and Bootstrap 3 (TODO)
 
 ## Installation
 
