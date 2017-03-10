@@ -2,7 +2,15 @@
 // Generated on Wed Nov 09 2016 10:20:13 GMT+0100 (W. Europe Standard Time)
 
 module.exports = function (config) {
+    var browsers = (process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome']);
+    
     config.set({
+        customLaunchers : {
+            Chrome_travis_ci: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        },
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '.',
@@ -81,7 +89,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],
+        browsers: browsers,
 
         client: {
             useIframe: false
