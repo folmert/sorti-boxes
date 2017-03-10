@@ -9,12 +9,17 @@
   "keywords": [
     "boxes",
     "toggle",
-    "sort"
+    "sort",
+    "sortable",
+    "select",
+    "selectable"
   ],
   "author": "Lukas Folmert",
   "license": "ISC",
   "dependencies": {
-    "jquery": ">=1.7"
+    "jquery": ">=1.7",
+    "bootstrap-css-only": ">=2.3.2",
+    "kovarik-glyphicons-bootstrap2": "^1.0.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -23,12 +28,14 @@
     "babel-preset-es2015": "^6.22.0",
     "css-loader": "^0.26.2",
     "extract-text-webpack-plugin": "^2.0.0",
+    "file-loader": "^0.10.1",
     "path": "^0.12.7",
     "postcss-cssnext": "^2.9.0",
     "postcss-for": "^2.1.1",
     "postcss-loader": "^1.3.3",
     "precss": "^1.4.0",
     "style-loader": "^0.13.2",
+    "url-loader": "^0.5.8",
     "webpack": "^2.2.1"
   }
 }

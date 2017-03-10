@@ -286,6 +286,7 @@
 }
 
 .sorti-box .sorti-box-half.sorti-box-available .sorti-box-available-toggle .glyphicons i:before {
+  position: static;
   font-size: 14px;
   top: 9px;
 }

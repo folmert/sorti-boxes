@@ -11,10 +11,18 @@ module.exports = function () {
         module:  {
             loaders: [
                 {
+                    test:   /\.(gif|png|woff|woff2|eot|ttf|svg)$/,
+                    loader: 'url-loader?limit=100000'
+                },
+                {
                     test:   /\.pcss$/,
                     loader: ExtractTextPlugin.extract({
                         loader: ['css-loader?sourceMap', 'postcss-loader?sourceMap&config=./']
                     })
+                },
+                {
+                    test:    /\.css$/,
+                    loader:  ['style-loader', 'css-loader']
                 },
                 {
                     test:    /\.js$/,

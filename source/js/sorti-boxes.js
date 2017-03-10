@@ -188,6 +188,7 @@
     };
  */
 
+require('kovarik-glyphicons-bootstrap2/glyphicons.css');
 require('../themes/default.pcss');
 
 (function ($) {
