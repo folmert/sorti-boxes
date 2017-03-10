@@ -2,6 +2,9 @@
 Sorti Boxes
 =========
 
+[![Build Status](https://travis-ci.org/folmert/sorti-boxes.svg?branch=master)](https://travis-ci.org/folmert/sorti-boxes)
+[![Coverage Status](https://coveralls.io/repos/github/folmert/sorti-boxes/badge.svg?branch=master)](https://coveralls.io/github/folmert/sorti-boxes?branch=master)
+
 Creates boxes with selectable and sortable elements. Requires jQuery 1.7+ and Bootstrap 2+.
 - possible to define custom params
 - data organized by multiple sections, each containing multiple boxes
