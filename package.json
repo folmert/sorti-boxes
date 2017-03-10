@@ -34,6 +34,8 @@
     "jasmine-fixture": "^2.0.0",
     "jasmine-jquery": "^2.1.1",
     "karma": "^1.5.0",
+    "karma-coveralls": "^1.1.2",
+    "karma-coverage": "^1.1.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-fixture": "^0.2.6",
     "karma-jasmine": "^1.1.0",
