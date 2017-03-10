@@ -56,7 +56,7 @@ module.exports = function (config) {
         coverageReporter: {
             type: 'lcov', // lcov or lcovonly are required for generating lcov.info files 
             dir: 'coverage/'
-        }
+        },
 
         logReporter: {
             outputPath:  "test/some/path/",
