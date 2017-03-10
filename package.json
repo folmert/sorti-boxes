@@ -4,7 +4,7 @@
   "description": "Creates boxes with selectable and sortable elements",
   "main": "dist/js/sorti-boxes.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start tests/karma-jasmine/karma.conf.js"
   },
   "keywords": [
     "boxes",
@@ -29,6 +29,18 @@
     "css-loader": "^0.26.2",
     "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.10.1",
+    "jasmine": "^2.5.3",
+    "jasmine-ajax": "^3.3.1",
+    "jasmine-fixture": "^2.0.0",
+    "jasmine-jquery": "^2.1.1",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-fixture": "^0.2.6",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-ajax": "^0.1.13",
+    "karma-jasmine-jquery": "^0.1.1",
+    "karma-log-reporter": "0.0.4",
+    "karma-phantomjs-launcher": "^1.0.3",
     "path": "^0.12.7",
     "postcss-cssnext": "^2.9.0",
     "postcss-for": "^2.1.1",

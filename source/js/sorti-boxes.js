@@ -140,31 +140,31 @@
         ],
         additionalHeading: `<tr class="small">
                     <th class="span4"></th>
-                    <th class="span1 valInfo">
+                    <th class="row-flluid valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo">
+                    <th class="row-flluid valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo">
+                    <th class="row-flluid valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo">
+                    <th class="row-flluid valInfo">
                             <small class="span6 txt">new</small>
                             <small class="span6 txt">default</small>
                         </th>
-                    <th class="span1 valInfo">
+                    <th class="row-flluid valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo">
+                    <th class="row-flluid valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
-                    <th class="span1 valInfo">
+                    <th class="row-flluid valInfo">
                         <small class="span6 txt">new</small>
                         <small class="span6 txt">default</small>
                     </th>
