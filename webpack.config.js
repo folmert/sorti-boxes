@@ -4,7 +4,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = function () {
     var distPathSave = path.resolve('./dist/');
     var distPathLoad = 'dist/';
-
+    
+    console.log('Running with NODE_ENV: ' + process.env.NODE_ENV);
+    
     return {
         cache:   false,
         devtool: 'source-map',
@@ -29,9 +31,10 @@ module.exports = function () {
                     exclude: /node_modules/,
                     loader:  'babel-loader',
                     query:   {
-                        presets: [require('babel-preset-es2015')]
+                        presets: [require('babel-preset-es2015')],
+                        plugins: (process.env.NODE_ENV == 'test' ? ['istanbul'] : [])
                     }
-                },
+                }
             ]
         },
         resolve: {
@@ -55,6 +58,6 @@ module.exports = function () {
             publicPath:    distPathLoad, // chunk is loaded from: [publicPath + chunkFilename]
             filename:      'js/[name].js',
             chunkFilename: 'js/[name].[chunkhash].js' // System.import doesn't support named chunks
-        },
+        }
     }
 };

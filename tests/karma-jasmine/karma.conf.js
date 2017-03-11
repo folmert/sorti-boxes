@@ -29,32 +29,33 @@ module.exports = function (config) {
             'https://code.jquery.com/jquery-3.1.1.min.js',
 
             // actual code
-            '../../dist/js/sorti-boxes.js',
+            '../../dist/js/**/*.js',
 
             // tests
             'spec/test.js',
 
             // fixtures
-            {pattern: 'spec/fixtures/*.html', included: false, served: true, watched: true}
+            // {pattern: 'spec/fixtures/*.html', included: false, served: true, watched: true}
         ],
 
 
         // list of files to exclude
         exclude: [],
 
-
-        // preprocess matching files before serving them to the browser
-        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: [{'spec/fixtures/**/*.html': ''}],
-
-
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'log-reporter', 'coverage', 'coveralls'],
+        reporters: ['coverage', 'coveralls', 'progress', 'log-reporter'],
+
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: [
+            {'spec/fixtures/**/*.html': ''},
+            // {'../../source/js/**/*.js': ['webpack', 'coverage']}
+        ],
         
         coverageReporter: {
-            type: 'lcov', // lcov or lcovonly are required for generating lcov.info files 
+            type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
             dir: 'coverage/'
         },
 
@@ -78,6 +79,7 @@ module.exports = function (config) {
             'karma-chrome-launcher',
             'karma-coverage',
             'karma-coveralls',
+            'karma-webpack'
         ],
 
 
