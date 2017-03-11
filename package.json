@@ -4,7 +4,7 @@
   "description": "Creates boxes with selectable and sortable elements",
   "main": "dist/js/sorti-boxes.js",
   "scripts": {
-    "test": "set NODE_ENV=test&& set COVERALLS_REPO_TOKEN=ih24cb94Zw9FCxVcOWm85aDYB4O8NIR37&& webpack && karma start tests/karma-jasmine/karma.conf.js"
+    "test": "cross-env NODE_ENV=test webpack && cross-env COVERALLS_REPO_TOKEN=ih24cb94Zw9FCxVcOWm85aDYB4O8NIR37 karma start tests/karma-jasmine/karma.conf.js"
   },
   "keywords": [
     "boxes",
@@ -27,6 +27,7 @@
     "babel-loader": "^6.4.0",
     "babel-plugin-istanbul": "^4.0.0",
     "babel-preset-es2015": "^6.22.0",
+    "cross-env": "^3.2.3",
     "css-loader": "^0.26.2",
     "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.10.1",
