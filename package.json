@@ -1,6 +1,6 @@
 {
   "name": "sorti-boxes",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Creates boxes with selectable and sortable elements",
   "main": "dist/js/sorti-boxes.js",
   "scripts": {
@@ -18,8 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "jquery": ">=1.7",
-    "bootstrap-css-only": ">=2.3.2",
-    "kovarik-glyphicons-bootstrap2": "^1.0.0"
+    "bootstrap-css-only": ">=2.3.2-1"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -41,6 +40,7 @@
     "karma-jasmine-jquery": "^0.1.1",
     "karma-log-reporter": "0.0.4",
     "karma-phantomjs-launcher": "^1.0.3",
+    "kovarik-glyphicons-bootstrap2": "^1.0.0",
     "path": "^0.12.7",
     "postcss-cssnext": "^2.9.0",
     "postcss-for": "^2.1.1",
