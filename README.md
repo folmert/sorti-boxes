@@ -34,168 +34,52 @@ $('#sortiBoxesContainer').sortiBoxes(options)
 var options = {
         params: [
             {
-                name:  'delay',
-                label: 'Churn delay [min]'
+                name:  'foo',
+                label: 'Foo'
             },
             {
-                name:  'msisdn_unique',
-                label: 'User uniqueness [h]'
-            },
-            {
-                name:  'clickip_unique',
-                label: 'IP uniqueness [h]'
-            },
-            {
-                name:  'fire_ratio',
-                label: 'Fire ratio [%]'
-            },
-            {
-                name:  'fire_cap',
-                label: 'Fire Cap [per&nbsp;day]'
-            },
-            {
-                name:  'since_click',
-                label: 'Since click [h]'
-            },
-            {
-                name:  'since_joined',
-                label: 'Since joined [h]'
+                name:  'bar',
+                label: 'Bar'
             }
         ],
         data:   [
             {
                 id:   1,
-                name: 'Event: Joined',
+                name: 'Section name',
 
                 boxes: [{
                     id:   1,
-                    name: 'TR', // will be used as header
+                    name: 'Box name', // will be used as header
 
                     elements: [
                         {
                             id:       1,
-                            name:     'Joined - TR - MOBILE (11)',
+                            name:     'Element A',
                             special:  true, // will add red dot
-                            selected: true,
-                            status:   true,
+                            selected: true, // makes element visible in selected area
+                            status:   true, // TODO: add new class when element.status == true
                             params: {
                                 // keys must match names of main params
-                                delay: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                msisdn_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                clickip_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_ratio: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_cap: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_click: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_joined: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
+                                foo: 7,
+                                bar: 42
                             }
                         },
                         {
                             id:       2,
-                            name:     'Joined - TR - ONLINE (10)',
-                            special:  false, // will add red dot
+                            name:     'Element B',
+                            special:  false,
                             selected: true,
                             status:   true,
                             params: {
-                                // keys must match names of main params
-                                delay: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                msisdn_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                clickip_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_ratio: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_cap: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_click: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_joined: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
+                                foo: 33,
+                                bar: 100
                             }
                         }
                     ]
                 }]
             }
         ],
-        additionalHeading: `<tr class="small">
-                    <th class="span4"></th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                            <small class="span6 txt">new</small>
-                            <small class="span6 txt">default</small>
-                        </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="span1"> </th>
-                </tr>`,
+        additionalHeading: `<tr><td>Additional Heading</td></tr>`,
         labels: {
             toggleAvailableOn:  'Show available elements',
             toggleAvailableOff: 'Hide available elements',
@@ -216,4 +100,6 @@ var options = {
 
 ## Tests
 
-  `npm test`
+  ```
+  npm test
+  ```
