@@ -3,11 +3,11 @@
 
 module.exports = function (config) {
     var browsers = (process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome']);
-    
+
     config.set({
-        customLaunchers : {
+        customLaunchers: {
             Chrome_travis_ci: {
-                base: 'Chrome',
+                base:  'Chrome',
                 flags: ['--no-sandbox']
             }
         },
@@ -53,10 +53,10 @@ module.exports = function (config) {
             {'spec/fixtures/**/*.html': ''},
             // {'../../source/js/**/*.js': ['webpack', 'coverage']}
         ],
-        
+
         coverageReporter: {
             type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
-            dir: 'coverage/'
+            dir:  'coverage/'
         },
 
         logReporter: {

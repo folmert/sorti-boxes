@@ -30,7 +30,7 @@ describe('sorti-boxes:', function () {
     });
 
     it('Section amount is correct', function (done) {
-
+        expect($('.sorti-box-section').length).toBe(data.length);
         done();
     });
 
@@ -87,12 +87,14 @@ describe('sorti-boxes:', function () {
         done();
     });
 
-    it('Elements can be moved up by one level', function (done) {
+    it('Selected elements can be moved up and down by one level', function (done) {
+        var row = $($('.sorti-box .sorti-box-selected tbody')[0]).find($('tr:first-child'));
 
-        done();
-    });
-
-    it('Elements can be moved down by one level', function (done) {
+        expect(row.index()).toBe(0);
+        row.find('.moveUpDown a.moveDown i').click();
+        expect(row.index()).toBe(1);
+        row.find('.moveUpDown a.moveUp i').click();
+        expect(row.index()).toBe(0);
 
         done();
     });
