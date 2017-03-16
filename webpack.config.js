@@ -4,9 +4,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = function () {
     var distPathSave = path.resolve('./dist/');
     var distPathLoad = 'dist/';
-    
+
     console.log('Running with NODE_ENV: ' + process.env.NODE_ENV);
-    
+
     return {
         cache:   false,
         devtool: 'source-map',
@@ -20,11 +20,14 @@ module.exports = function () {
                     test:   /\.pcss$/,
                     loader: ExtractTextPlugin.extract({
                         loader: ['css-loader?sourceMap', 'postcss-loader?sourceMap&config=./']
+
+                        // TODO: fix
+                        // loader: (process.env.NODE_ENV == 'test' ? ['style-loader', 'css-loader?importLoaders=1', 'postcss-loader?config=./'] : ['css-loader?sourceMap', 'postcss-loader?sourceMap&config=./'])
                     })
                 },
                 {
-                    test:    /\.css$/,
-                    loader:  ['style-loader', 'css-loader']
+                    test:   /\.css$/,
+                    loader: ['style-loader', 'css-loader']
                 },
                 {
                     test:    /\.js$/,
@@ -42,7 +45,7 @@ module.exports = function () {
                 path.resolve('./node_modules/')
             ]
         },
-        entry: {
+        entry:   {
             'sorti-boxes': [
                 './source/js/sorti-boxes.js'
             ]
@@ -53,7 +56,7 @@ module.exports = function () {
                 allChunks: false
             })
         ],
-        output: {
+        output:  {
             path:          distPathSave, // JS/chunk is saved in: [path + filename/chunkFilename]
             publicPath:    distPathLoad, // chunk is loaded from: [publicPath + chunkFilename]
             filename:      'js/[name].js',
