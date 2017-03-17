@@ -18,12 +18,11 @@ module.exports = function () {
                 },
                 {
                     test:   /\.pcss$/,
-                    loader: ExtractTextPlugin.extract({
+                    loader: (process.env.NODE_ENV == 'test' ?
+                        ['style-loader', 'css-loader', 'postcss-loader?config=./']
+                        : ExtractTextPlugin.extract({
                         loader: ['css-loader?sourceMap', 'postcss-loader?sourceMap&config=./']
-
-                        // TODO: fix
-                        // loader: (process.env.NODE_ENV == 'test' ? ['style-loader', 'css-loader?importLoaders=1', 'postcss-loader?config=./'] : ['css-loader?sourceMap', 'postcss-loader?sourceMap&config=./'])
-                    })
+                    }))
                 },
                 {
                     test:   /\.css$/,
@@ -50,12 +49,13 @@ module.exports = function () {
                 './source/js/sorti-boxes.js'
             ]
         },
-        plugins: [
-            new ExtractTextPlugin({
+        plugins: (process.env.NODE_ENV == 'test' ?
+            [] :
+            [new ExtractTextPlugin({
                 filename:  'themes/default.css', // css are saved in: [path + plugins.ExtractTextPlugin.filename]
                 allChunks: false
-            })
-        ],
+            }),
+            ]),
         output:  {
             path:          distPathSave, // JS/chunk is saved in: [path + filename/chunkFilename]
             publicPath:    distPathLoad, // chunk is loaded from: [publicPath + chunkFilename]

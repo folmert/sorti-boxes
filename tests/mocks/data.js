@@ -26,7 +26,7 @@ var data = [
                         id:       2,
                         name:     'Element 2 "Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                         special:  true,
-                        selected: true,
+                        selected: false,
                         status:   true,
 
                         params: {

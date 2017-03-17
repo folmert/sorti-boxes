@@ -2,15 +2,22 @@
 // Generated on Wed Nov 09 2016 10:20:13 GMT+0100 (W. Europe Standard Time)
 
 module.exports = function (config) {
-    var browsers = (process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome']);
+    var browsers = (process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome_without_security']);
 
     config.set({
         customLaunchers: {
             Chrome_travis_ci: {
                 base:  'Chrome',
                 flags: ['--no-sandbox']
+            },
+            Chrome_without_security: {
+                base: 'Chrome',
+                flags: ['--disable-web-security']
             }
         },
+
+        browserNoActivityTimeout: 100000000,
+        browserDisconnectTimeout: 100000000,
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '.',
@@ -18,7 +25,6 @@ module.exports = function (config) {
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine-ajax', 'jasmine-jquery', 'jasmine', 'fixture'],
-
 
         // list of files / patterns to load in the browser
         files: [
