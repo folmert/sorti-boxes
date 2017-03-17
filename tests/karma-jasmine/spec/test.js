@@ -198,9 +198,9 @@ describe('sorti-boxes:', function () {
             $('.sorti-box').each(function (i, box) {
                 var element = $($(box).find('.sorti-box-available tbody tr:visible')[0]);
                 var elementId = element.attr('rel');
-                expect($(box).find('.sorti-box-selected tbody').find(`tr[rel="${elementId}"]`)).not.toExist();
+                expect($(box).find('.sorti-box-selected tbody').find('tr[rel="' + elementId + '"]')).not.toExist();
                 element.find('.toggleElement a i').click();
-                expect($(box).find('.sorti-box-selected tbody').find(`tr[rel="${elementId}"]`)).toExist();
+                expect($(box).find('.sorti-box-selected tbody').find('tr[rel="' + elementId + '"]')).toExist();
             });
 
             done();
