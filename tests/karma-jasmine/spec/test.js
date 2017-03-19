@@ -186,6 +186,7 @@ describe('sorti-boxes:', function () {
                     fnName:   'toggleBox'
                 }
             ], function (i, eventExpected) {
+                // TODO: fix failing build on travis at find function
                 expect(bindedEvents[eventExpected.type].find(function (event) {
                     return event.selector == eventExpected.selector;
                 }).handler.name).toBe(eventExpected.fnName);
