@@ -182,6 +182,7 @@
 }
 
 .sorti-box .sorti-box-half table tbody tr td.name.special:before {
+  display: block;
   color: rgb(224, 69, 69);
   content: '\B7';
   overflow: hidden;

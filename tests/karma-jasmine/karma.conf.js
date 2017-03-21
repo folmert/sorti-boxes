@@ -2,7 +2,7 @@
 // Generated on Wed Nov 09 2016 10:20:13 GMT+0100 (W. Europe Standard Time)
 
 module.exports = function (config) {
-    var browsers = (process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome_without_security']);
+    var browsers = (process.env.TRAVIS ? ['Chrome_travis_ci'] : ['Chrome_without_security', 'IE']);
 
     config.set({
         customLaunchers: {
@@ -30,6 +30,7 @@ module.exports = function (config) {
         files: [
             'spec/mock-ajax.js',
             '../mocks/data.js',
+            'polyfills.js',
 
             // dependencies
             'https://code.jquery.com/jquery-3.1.1.min.js',
@@ -83,6 +84,7 @@ module.exports = function (config) {
             'karma-fixture',
             'karma-log-reporter',
             'karma-chrome-launcher',
+            'karma-ie-launcher',
             'karma-coverage',
             'karma-coveralls',
             'karma-webpack'

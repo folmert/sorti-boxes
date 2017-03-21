@@ -12,7 +12,8 @@ describe('sorti-boxes:', function () {
         setTimeout(done, 10000000);
     };
 
-    addCSS('https://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css'); // TODO: find a way to add CSS files in Karma
+    // TODO: find a way to add CSS files in Karma
+    addCSS('https://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css');
 
     // TODO: add support for bs 3
     $.each([2], function (b, bsVersion) {
@@ -97,10 +98,11 @@ describe('sorti-boxes:', function () {
                     $(element).find('.toggleElement a i').click();
 
                     if ($(boxSelected).find('tr').length > options.amountVisibleInSelectedBox) {
-                        expect($(boxSelected).get(0).scrollHeight > $(boxSelected).height()).toBe(true);
+                        // in IE, $.height() returns slightly lower values than scroll height
+                        expect($(boxSelected).get(0).scrollHeight > Math.round($(boxSelected).height())).toBe(true);
                     }
                     else {
-                        expect($(boxSelected).get(0).scrollHeight > $(boxSelected).height()).toBe(false);
+                        expect($(boxSelected).get(0).scrollHeight > Math.round($(boxSelected).height())).toBe(false);
                     }
                 });
 
@@ -108,10 +110,10 @@ describe('sorti-boxes:', function () {
                     $(element).find('.toggleElement a i').click();
 
                     if ($(boxAvailable).find('tr:visible').length > options.amountVisibleInAvailableBox) {
-                        expect($(boxAvailable).get(0).scrollHeight > $(boxAvailable).height()).toBe(true);
+                        expect($(boxAvailable).get(0).scrollHeight > Math.round($(boxAvailable).height())).toBe(true);
                     }
                     else {
-                        expect($(boxAvailable).get(0).scrollHeight > $(boxAvailable).height()).toBe(false);
+                        expect($(boxAvailable).get(0).scrollHeight > Math.round($(boxAvailable).height())).toBe(false);
                     }
                 });
             });
@@ -186,9 +188,9 @@ describe('sorti-boxes:', function () {
                     fnName:   'toggleBox'
                 }
             ], function (i, eventExpected) {
-                expect(bindedEvents[eventExpected.type].filter(function (event) {
+                expect(getFunctionName(bindedEvents[eventExpected.type].filter(function (event) {
                     return event.selector == eventExpected.selector;
-                })[0].handler.name).toBe(eventExpected.fnName);
+                })[0].handler)).toBe(eventExpected.fnName);
             });
 
             done();
