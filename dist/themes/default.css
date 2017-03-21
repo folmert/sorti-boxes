@@ -275,6 +275,10 @@
   cursor: pointer;
 }
 
+.sorti-box .sorti-box-half.sorti-box-available .sorti-box-available-toggle th {
+  text-align: left;
+}
+
 .sorti-box .sorti-box-half.sorti-box-available .sorti-box-available-toggle .glyphicons {
   width: 0;
   padding: 0;

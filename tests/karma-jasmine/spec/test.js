@@ -86,7 +86,7 @@ describe('sorti-boxes:', function () {
             done();
         });
 
-        it('Test corectness behind options: amountVisibleInAvailableBox and amountVisibleInSelectedBox', function (done) {
+        it('Test corectness behind options: amountVisibleInAvailableBox and amountVisibleInSelectedBox (scroll visibility)', function (done) {
             $('.sorti-box').each(function (i, box) {
                 var boxSelected = $(box).find('.sorti-box-selected tbody');
                 var boxAvailable = $(box).find('.sorti-box-available tbody');

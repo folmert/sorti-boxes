@@ -188,7 +188,6 @@
     };
  */
 
-require('kovarik-glyphicons-bootstrap2/glyphicons.css');
 require('../themes/default.pcss');
 
 (function ($) {
@@ -201,7 +200,7 @@ require('../themes/default.pcss');
         options = $.extend(options, (optionsCustom || {}));
         setBootstrapClasses(options.bootstrapVersion);
 
-        renderBoxes(this, function () {
+        renderBoxes(this, () => {
             $('.sorti-box').each(function () {
                 selected.adjustContainerHeight($(this));
                 available.adjustContainerHeight($(this));
@@ -220,7 +219,7 @@ require('../themes/default.pcss');
     /**
      * Default options
      */
-    var options = {
+    let options = {
         labels:                      {
             toggleAvailableOn:  'Show available elements',
             toggleAvailableOff: 'Hide available elements',
@@ -236,7 +235,7 @@ require('../themes/default.pcss');
     /**
      * Bootstrap classes
      */
-    var bsClasses = {};
+    let bsClasses = {};
 
 
     /**
@@ -244,7 +243,7 @@ require('../themes/default.pcss');
      *
      * @param bsVersion
      */
-    var setBootstrapClasses = function (bsVersion) {
+    let setBootstrapClasses = function (bsVersion) {
         switch (bsVersion) {
             case 2:
                 bsClasses = $.extend({}, {
@@ -283,34 +282,34 @@ require('../themes/default.pcss');
      * @param container
      * @param callback
      */
-    var renderBoxes = function (container, callback) {
-        var sections = [];
+    let renderBoxes = function (container, callback) {
+        let sections = [];
 
-        $.each(options.data, function (sectionIndex, section) {
-            var _section = $('<div></div>')
+        $.each(options.data, (sectionIndex, section) => {
+            let _section = $('<div></div>')
                 .addClass('sorti-box-section')
                 .attr('rel', section.id)
                 .append(`<h5>${section.name}</h5>`);
 
-            $.each(section.boxes, function (boxIndex, box) {
+            $.each(section.boxes, (boxIndex, box) => {
                 // 1. MAIN PARTS:
 
-                var _box = $('<div></div>').addClass('sorti-box').attr('rel', box.id);
-                var _boxSelected = $('<div class="sorti-box-selected-container"><div class="sorti-box-selected sorti-box-half"><table class="table"></table></div></div>');
-                var _boxAvailable = $('<div class="sorti-box-available-container"><div class="sorti-box-available sorti-box-half"><table class="table"></table></div></div>');
-                var _boxSelectedContent = $('<tbody></tbody>');
-                var _boxAvailableContent = $('<tbody></tbody>');
-                var _boxHead = $('<thead></thead>');
+                let _box = $('<div></div>').addClass('sorti-box').attr('rel', box.id);
+                let _boxSelected = $('<div class="sorti-box-selected-container"><div class="sorti-box-selected sorti-box-half"><table class="table"></table></div></div>');
+                let _boxAvailable = $('<div class="sorti-box-available-container"><div class="sorti-box-available sorti-box-half"><table class="table"></table></div></div>');
+                let _boxSelectedContent = $('<tbody></tbody>');
+                let _boxAvailableContent = $('<tbody></tbody>');
+                let _boxHead = $('<thead></thead>');
 
                 // 2. RENDER HEAD:
 
-                var _header = $(`<tr class="sorti-box-header ${bsClasses.row}">
+                let _header = $(`<tr class="sorti-box-header ${bsClasses.row}">
                                  <th class="name">
                                  <span>${box.name}</span></th></tr>`);
 
-                var _heading = $(`<tr class="sorti-box-heading ${bsClasses.row}"></tr>`);
+                let _heading = $(`<tr class="sorti-box-heading ${bsClasses.row}"></tr>`);
                 _heading.append($(`<th><span class="sorti-box-heading-param">Name</span></th>`));
-                $.each(options.params, function (paramIndex, param) {
+                $.each(options.params, (paramIndex, param) => {
                     _heading.append($(`<th class="vals">
                                         <span class="sorti-box-heading-param">
                                             ${param.label}
@@ -323,7 +322,7 @@ require('../themes/default.pcss');
 
                 // 3. RENDER AVAILABLE BOX TOGGLE:
 
-                var _boxToggleAvailable = `<thead class="sorti-box-available-toggle sorti-box-available-toggle-expanded">
+                let _boxToggleAvailable = `<thead class="sorti-box-available-toggle sorti-box-available-toggle-expanded">
 	            <tr>
 		            <th>
 			            <span class="btn-action margin-none single pointer ${bsClasses.glyphicon.expanded}"><i></i></span>
@@ -334,16 +333,16 @@ require('../themes/default.pcss');
 
                 // 4. RENDER CONTENT:
 
-                $.each(box.elements, function (elementIndex, element) {
-                    var _element = $(`<tr class="${bsClasses.row}"></tr>`).attr('rel', element.id);
-                    var _elementName = $(`<td class="name"><span class="txt">${element.name}</span></td>`);
+                $.each(box.elements, (elementIndex, element) => {
+                    let _element = $(`<tr class="${bsClasses.row}"></tr>`).attr('rel', element.id);
+                    let _elementName = $(`<td class="name"><span class="txt">${element.name}</span></td>`);
                     if (element.special) {
                         _elementName.addClass('special')
                     }
 
                     _element.append(_elementName);
 
-                    $.each(options.params, function (paramIndex, param) {
+                    $.each(options.params, (paramIndex, param) => {
                         _element.append(`<td class="vals">${element.params[param.name]}</td>`);
                     });
 
@@ -357,7 +356,7 @@ require('../themes/default.pcss');
                         </span>
                         </td>`);
 
-                    var _elementInAvailableBox = _element.clone();
+                    let _elementInAvailableBox = _element.clone();
                     _elementInAvailableBox.appendTo(_boxAvailableContent);
 
                     if (element.selected) {
@@ -387,7 +386,7 @@ require('../themes/default.pcss');
         });
 
         $(container).html('');
-        $(sections).each(function (sectionIndex, section) {
+        $(sections).each((sectionIndex, section) => {
             $(container).append(section);
         });
 
@@ -401,10 +400,10 @@ require('../themes/default.pcss');
      * @param amountElements
      * @return {number}
      */
-    var calculateContainerHeight = function (amountElements) {
-        var elements = $('.sorti-box-selected table tbody tr:not(.info)');
+    let calculateContainerHeight = function (amountElements) {
+        let elements = $('.sorti-box-selected table tbody tr:not(.info)');
 
-        var elementLowestHeight = Math.min.apply(null, $(elements).map(function () {
+        let elementLowestHeight = Math.min.apply(null, $(elements).map(function () {
             return $(this).outerHeight() + 1; // add border-bottom for each
         }).get());
 
@@ -417,13 +416,13 @@ require('../themes/default.pcss');
      *
      * @param thisBox
      */
-    var resizeBoxIfScrollAppears = function (thisBox) {
-        var boxHasScroll = false;
-        var scrollWidth;
+    let resizeBoxIfScrollAppears = function (thisBox) {
+        let boxHasScroll = false;
+        let scrollWidth;
 
         $(thisBox).find('tbody').each(function () {
             // if one of tbodies has scroll:
-            if ($(this)[0].scrollHeight > $(this).css('max-height').replace(/[^-\d\.]/g, '')) {
+            if ($(this)[0].scrollHeight > $(this).css('max-height').replace(/[^-\d.]/g, '')) {
                 boxHasScroll = true;
                 scrollWidth = $(this).outerWidth() - $(this).find('tr:visible').outerWidth();
             }
@@ -434,7 +433,7 @@ require('../themes/default.pcss');
 
             $(thisBox).find('tbody').each(function () {
                 // for each tbody without scroll:
-                if (!($(this)[0].scrollHeight > $(this).css('max-height').replace(/[^-\d\.]/g, ''))) {
+                if (!($(this)[0].scrollHeight > $(this).css('max-height').replace(/[^-\d.]/g, ''))) {
                     $(this).find('tr').css({'padding-right': scrollWidth + 'px'});
                 }
                 else {
@@ -454,7 +453,7 @@ require('../themes/default.pcss');
      * @param target
      * @return {$}
      */
-    var getBoxByTarget = function (target) {
+    let getBoxByTarget = function (target) {
         return $(target).closest('.sorti-box');
     };
 
@@ -465,7 +464,7 @@ require('../themes/default.pcss');
      * @param id
      * @return {$}
      */
-    var getBoxById = function (id) {
+    let getBoxById = function (id) {
         return $(`.sorti-box[rel="${id}"]`);
     };
 
@@ -473,9 +472,9 @@ require('../themes/default.pcss');
     /**
      * Selected Box methods only
      */
-    var selected = function () {
-        var adjustContainerHeight = function (thisBox) {
-            var newHeight = calculateContainerHeight(options.amountVisibleInSelectedBox);
+    let selected = function () {
+        let adjustContainerHeight = function (thisBox) {
+            let newHeight = calculateContainerHeight(options.amountVisibleInSelectedBox);
             thisBox.find('.sorti-box-selected tbody').css({'max-height': newHeight + 'px'});
         };
 
@@ -486,9 +485,9 @@ require('../themes/default.pcss');
          * @param eventId
          * @return {Array}
          */
-        var get = function (eventId) {
-            var thisBox = getBoxById(eventId);
-            var selectedTriggers = [];
+        let get = function (eventId) {
+            let thisBox = getBoxById(eventId);
+            let selectedTriggers = [];
 
             $(thisBox).find('.sorti-box-selected table tr:not(.info)').each(function () {
                 selectedTriggers.push($(this).attr('rel'));
@@ -504,12 +503,12 @@ require('../themes/default.pcss');
          * @param e
          * @return {boolean}
          */
-        var moveToAvailable = function (e) {
-            var thisBox = getBoxByTarget(e.target);
+        let moveToAvailable = function (e) {
+            let thisBox = getBoxByTarget(e.target);
 
-            var boxAvailable = $(thisBox).find('.sorti-box-available table tbody');
-            var boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
-            var row = $(e.target).closest('tr');
+            let boxAvailable = $(thisBox).find('.sorti-box-available table tbody');
+            let boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
+            let row = $(e.target).closest('tr');
 
             boxAvailable.find(`tr[rel="${row.attr('rel')}"]`).show();
             boxSelected.find(`tr[rel="${row.attr('rel')}"]`).remove();
@@ -530,10 +529,10 @@ require('../themes/default.pcss');
          *
          * @param e
          */
-        var moveUpDown = function (e) {
+        let moveUpDown = function (e) {
             e.preventDefault();
-            var a = e.target.parentElement;
-            var row = $(a).closest('tr');
+            let a = e.target.parentElement;
+            let row = $(a).closest('tr');
 
             if ($(a).hasClass('moveUp')) {
                 $(row).insertBefore($(row).prev());
@@ -549,8 +548,8 @@ require('../themes/default.pcss');
          *
          * @param thisBox
          */
-        var toggleInitInfo = function (thisBox) {
-            var boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
+        let toggleInitInfo = function (thisBox) {
+            let boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
 
             if (!(boxSelected.find('tr').length)) {
                 boxSelected.html(`<tr class="info"><td>${options.labels.selectedBoxInitMsg}</td></tr>`);
@@ -562,11 +561,11 @@ require('../themes/default.pcss');
 
 
         return {
-            adjustContainerHeight: adjustContainerHeight,
-            moveToAvailable:       moveToAvailable,
-            moveUpDown:            moveUpDown,
-            get:                   get,
-            toggleInitInfo:        toggleInitInfo
+            adjustContainerHeight,
+            moveToAvailable,
+            moveUpDown,
+            get,
+            toggleInitInfo
         }
     }();
 
@@ -574,14 +573,14 @@ require('../themes/default.pcss');
     /**
      * Available Box methods only
      */
-    var available = function () {
+    let available = function () {
         /**
          * Adjusts box height to match passed option
          *
          * @param thisBox
          */
-        var adjustContainerHeight = function (thisBox) {
-            var newHeight = calculateContainerHeight(options.amountVisibleInAvailableBox);
+        let adjustContainerHeight = function (thisBox) {
+            let newHeight = calculateContainerHeight(options.amountVisibleInAvailableBox);
             thisBox.find('.sorti-box-available tbody').css({'max-height': newHeight + 'px'});
         };
 
@@ -592,9 +591,9 @@ require('../themes/default.pcss');
          * @param e
          * @return {boolean}
          */
-        var moveToSelected = function (e) {
-            var thisBox = getBoxByTarget(e.target);
-            var boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
+        let moveToSelected = function (e) {
+            let thisBox = getBoxByTarget(e.target);
+            let boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
 
             $(e.target).closest('tr').clone().appendTo(boxSelected).find('input').val('').prop('disabled', false);
 
@@ -619,9 +618,9 @@ require('../themes/default.pcss');
          *
          * @param e
          */
-        var toggleBox = function (e) {
-            var thisBox = getBoxByTarget(e.target);
-            var boxAvailableToggle = thisBox.find('.sorti-box-available-toggle');
+        let toggleBox = function (e) {
+            let thisBox = getBoxByTarget(e.target);
+            let boxAvailableToggle = thisBox.find('.sorti-box-available-toggle');
             thisBox.find('.sorti-box-available tbody').toggle();
             boxAvailableToggle.find('.btn-action').toggleClass(bsClasses.glyphicon.collapsed).toggleClass(bsClasses.glyphicon.expanded);
             boxAvailableToggle.toggleClass('sorti-box-available-toggle-collapsed').toggleClass('sorti-box-available-toggle-expanded');
@@ -633,14 +632,14 @@ require('../themes/default.pcss');
 
 
         return {
-            adjustContainerHeight: adjustContainerHeight,
-            moveToSelected:        moveToSelected,
-            toggleBox:             toggleBox
+            adjustContainerHeight,
+            moveToSelected,
+            toggleBox
         }
     }();
 
 
-    var bindObjects = [
+    let bindObjects = [
         {
             event:    'click',
             element:  '.sorti-box-available .toggleElement a',
@@ -664,8 +663,8 @@ require('../themes/default.pcss');
     ];
 
 
-    var bindEvents = (function () {
-        $.each(bindObjects, function (i, object) {
+    let bindEvents = (function () {
+        $.each(bindObjects, (i, object) => {
             $('body')
                 .off(object.event, object.element, object.function)
                 .on(object.event, object.element, object.function);
