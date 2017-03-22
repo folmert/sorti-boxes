@@ -1,6 +1,6 @@
 {
   "name": "sorti-boxes",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Creates boxes with selectable and sortable elements",
   "main": "dist/js/sorti-boxes.js",
   "scripts": {

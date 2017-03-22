@@ -1,3 +1,4 @@
+// alternative for: handler.name property
 function getFunctionName(func) {
     // Match:
     // - ^          the beginning of the string
