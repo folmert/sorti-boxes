@@ -16,7 +16,7 @@ Creates boxes with selectable and sortable elements. Requires jQuery 1.7+ and Bo
 - possible to define custom callback function after boxes are rendered and elements are moved
 - supports both Bootstrap 2 and Bootstrap 3 (TODO)
 
-## Installation
+## Installation (only if used with npm)
 
   ```javascript
   npm install sorti-boxes
@@ -25,6 +25,12 @@ Creates boxes with selectable and sortable elements. Requires jQuery 1.7+ and Bo
 ## Usage
 
 ```javascript
+// pull with <link> and <script> tags (the oldschool way) or require from node_modules (more advised):
+require('bootstrap-css-only/css/bootstrap.min.css');
+require('kovarik-glyphicons-bootstrap2/glyphicons.css');
+require('sorti-boxes/dist/themes/default.css');
+require('sorti-boxes');
+
 $('#sortiBoxesContainer').sortiBoxes(options)
 ```
 
