@@ -19,9 +19,10 @@ TODO
 - support for Bootstrap 3
 - test for different versions of jQuery
 - CSS to BEM
+- CSS: remove magic numbers and quirky code for rwd
 - add stylelint
 - provide optional custom scope for binded events
-- render boxes: extract parts
+- method behind rendering boxes: extract to separate methods
 - add drag n drop
 
 
