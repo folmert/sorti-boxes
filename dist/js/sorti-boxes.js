@@ -83,175 +83,58 @@
  * var options = {
         params: [
             {
-                name:  'delay',
-                label: 'Churn delay [min]'
+                name:  'foo',
+                label: 'Foo'
             },
             {
-                name:  'msisdn_unique',
-                label: 'User uniqueness [h]'
-            },
-            {
-                name:  'clickip_unique',
-                label: 'IP uniqueness [h]'
-            },
-            {
-                name:  'fire_ratio',
-                label: 'Fire ratio [%]'
-            },
-            {
-                name:  'fire_cap',
-                label: 'Fire Cap [per&nbsp;day]'
-            },
-            {
-                name:  'since_click',
-                label: 'Since click [h]'
-            },
-            {
-                name:  'since_joined',
-                label: 'Since joined [h]'
+                name:  'bar',
+                label: 'Bar'
             }
         ],
         data:   [
             {
                 id:   1,
-                name: 'Event: Joined',
+                name: 'Section Name',
 
                 boxes: [{
                     id:   1,
-                    name: 'TR', // will be used as header
+                    name: 'Box Name',
 
                     elements: [
                         {
                             id:       1,
-                            name:     'Joined - TR - MOBILE (11)',
-                            special:  true, // will add red dot
+                            name:     'Element Name',
+                            special:  true,
                             selected: true,
                             status:   true,
                             params: {
-                                // keys must match names of main params
-                                delay: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                msisdn_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                clickip_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_ratio: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_cap: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_click: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_joined: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
+                                foo: 15,
+                                bar: 53
                             }
                         },
                         {
                             id:       2,
-                            name:     'Joined - TR - ONLINE (10)',
-                            special:  false, // will add red dot
+                            name:     'Element Name',
+                            special:  true,
                             selected: true,
                             status:   true,
                             params: {
-                                // keys must match names of main params
-                                delay: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                msisdn_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                clickip_unique: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_ratio: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                fire_cap: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_click: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
-
-                                since_joined: `<span class="span6 val new">
-                                                <input value="2" name="triggers[19][rules][11][delay]" autocomplete="off" type="text">
-                                                </span>
-                                                <span class="span6 val old">3</span>`,
+                                foo: 67,
+                                bar: 89
                             }
-                        }
+                        },
                     ]
                 }]
             }
         ],
-        additionalHeading: `<tr class="small">
-                    <th class="span4"></th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                            <small class="span6 txt">new</small>
-                            <small class="span6 txt">default</small>
-                        </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="row-fluid valInfo">
-                        <small class="span6 txt">new</small>
-                        <small class="span6 txt">default</small>
-                    </th>
-                    <th class="span1"> </th>
-                </tr>`,
+        additionalHeading: `<tr><td>Additional Heading</td></tr>`,
         labels: {
             toggleAvailableOn:  'Show available elements',
             toggleAvailableOff: 'Hide available elements',
             selectedBoxInitMsg: 'No elements selected'
         },
         bootstrapVersion: 2,
-        colWidthName:     4,
+        colWidthName:     '25%',
         amountVisibleInAvailableBox: 10,
         amountVisibleInSelectedBox:  5,
         callbackElementMoved: function () {
@@ -309,6 +192,11 @@ __webpack_require__(1);
      * Bootstrap classes
      */
     var bsClasses = {};
+
+    /**
+     * Container for dragged element
+     */
+    var dragSrcEl = null;
 
     /**
      * Defines Bootstrap classes depending on the used version
@@ -407,6 +295,7 @@ __webpack_require__(1);
                     _elementInAvailableBox.appendTo(_boxAvailableContent);
 
                     if (element.selected) {
+                        _element.attr('draggable', true);
                         _element.appendTo(_boxSelectedContent);
                         _elementInAvailableBox.css({ 'display': 'none' });
                     }
@@ -626,7 +515,9 @@ __webpack_require__(1);
             var thisBox = getBoxByTarget(e.target);
             var boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
 
-            $(e.target).closest('tr').clone().appendTo(boxSelected).find('input').val('').prop('disabled', false);
+            var element = $(e.target).closest('tr').clone();
+            element.attr('draggable', true);
+            element.appendTo(boxSelected).find('input').val('').prop('disabled', false);
 
             $(e.target).closest('tr').hide();
             $(boxSelected).animate({
@@ -665,6 +556,59 @@ __webpack_require__(1);
         };
     }();
 
+    /**
+     * Handler for action when element is dragged
+     * @param e
+     */
+    var dragStartHandle = function dragStartHandle(e) {
+        $(this).css({ opacity: '0.4' });
+        dragSrcEl = this;
+        e.originalEvent.dataTransfer.effectAllowed = 'move';
+    };
+
+    /**
+     * Handler for action when dragged element is moved over other element
+     * @param e
+     */
+    var dragOverHandle = function dragOverHandle(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+
+        e.originalEvent.dataTransfer.dropEffect = 'move';
+    };
+
+    /**
+     * Handler for action when dragged element is moved over other element for the first time
+     */
+    var dragEnterHandle = function dragEnterHandle() {
+        $('.sorti-box-selected tbody tr:not(.info)').removeClass('js-drag-over');
+        this.classList.add('js-drag-over'); // remove on dragleave?
+    };
+
+    /**
+     * Handler for action when dragged element is dropped
+     *
+     * @param e
+     */
+    var dragDropHandle = function dragDropHandle(e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+
+        if (dragSrcEl != this) {
+            $(dragSrcEl).detach().insertBefore($(this));
+        }
+    };
+
+    /**
+     * Handler for action when drag and drop is finished
+     */
+    var dragEndHandle = function dragEndHandle() {
+        $('.sorti-box-selected tbody tr:not(.info)').removeClass('js-drag-over');
+        $(this).css({ opacity: '1' });
+    };
+
     var bindObjects = [{
         event: 'click',
         element: '.sorti-box-available .toggleElement a',
@@ -681,6 +625,26 @@ __webpack_require__(1);
         event: 'click',
         element: '.sorti-box-available-toggle',
         function: available.toggleBox
+    }, {
+        event: 'dragstart',
+        element: '.sorti-box-selected tbody tr:not(.info)',
+        function: dragStartHandle
+    }, {
+        event: 'dragover',
+        element: '.sorti-box-selected tbody tr:not(.info)',
+        function: dragOverHandle
+    }, {
+        event: 'dragenter',
+        element: '.sorti-box-selected tbody tr:not(.info)',
+        function: dragEnterHandle
+    }, {
+        event: 'drop',
+        element: '.sorti-box-selected tbody tr:not(.info)',
+        function: dragDropHandle
+    }, {
+        event: 'dragend',
+        element: '.sorti-box-selected tbody tr:not(.info)',
+        function: dragEndHandle
     }];
 
     var bindEvents = function bindEvents() {

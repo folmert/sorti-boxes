@@ -9,11 +9,6 @@
           align-items: center;
 }
 
-.well {
-  text-align: center;
-  color: rgb(196, 196, 196);
-}
-
 .sorti-box {
   padding: 0 0 10px 0;
 }
@@ -182,7 +177,6 @@
 }
 
 .sorti-box .sorti-box-half table tbody tr td.name.special:before {
-  display: block;
   color: rgb(224, 69, 69);
   content: '\B7';
   overflow: hidden;
@@ -261,6 +255,19 @@
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody tr.js-drag-over {
+  position: relative;
+}
+
+.sorti-box .sorti-box-half.sorti-box-selected tbody tr.js-drag-over:after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  background: rgba(0, 0, 0, .1);
 }
 
 .sorti-box .sorti-box-half.sorti-box-available {

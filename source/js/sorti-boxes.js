@@ -122,6 +122,12 @@ require('../themes/default.pcss');
 
 
     /**
+     * Container for dragged element
+     */
+    let dragSrcEl = null;
+
+
+    /**
      * Defines Bootstrap classes depending on the used version
      *
      * @param bsVersion
@@ -243,6 +249,7 @@ require('../themes/default.pcss');
                     _elementInAvailableBox.appendTo(_boxAvailableContent);
 
                     if (element.selected) {
+                        _element.attr('draggable', true);
                         _element.appendTo(_boxSelectedContent);
                         _elementInAvailableBox.css({'display': 'none'});
                     }
@@ -477,7 +484,9 @@ require('../themes/default.pcss');
             let thisBox = getBoxByTarget(e.target);
             let boxSelected = $(thisBox).find('.sorti-box-selected table tbody');
 
-            $(e.target).closest('tr').clone().appendTo(boxSelected).find('input').val('').prop('disabled', false);
+            let element = $(e.target).closest('tr').clone();
+            element.attr('draggable', true);
+            element.appendTo(boxSelected).find('input').val('').prop('disabled', false);
 
             $(e.target).closest('tr').hide();
             $(boxSelected).animate({
@@ -520,6 +529,64 @@ require('../themes/default.pcss');
     }();
 
 
+    /**
+     * Handler for action when element is dragged
+     * @param e
+     */
+    let dragStartHandle = function (e) {
+        $(this).css({opacity: '0.4'});
+        dragSrcEl = this;
+        e.originalEvent.dataTransfer.effectAllowed = 'move';
+    };
+
+
+    /**
+     * Handler for action when dragged element is moved over other element
+     * @param e
+     */
+    let dragOverHandle = function (e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+
+        e.originalEvent.dataTransfer.dropEffect = 'move';
+    };
+
+
+    /**
+     * Handler for action when dragged element is moved over other element for the first time
+     */
+    let dragEnterHandle = function () {
+        $('.sorti-box-selected tbody tr:not(.info)').removeClass('js-drag-over');
+        this.classList.add('js-drag-over'); // remove on dragleave?
+    };
+
+
+    /**
+     * Handler for action when dragged element is dropped
+     *
+     * @param e
+     */
+    let dragDropHandle = function (e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+
+        if (dragSrcEl != this) {
+            $(dragSrcEl).detach().insertBefore($(this));
+        }
+    };
+
+
+    /**
+     * Handler for action when drag and drop is finished
+     */
+    let dragEndHandle = function () {
+        $('.sorti-box-selected tbody tr:not(.info)').removeClass('js-drag-over');
+        $(this).css({opacity: '1'})
+    };
+
+
     let bindObjects = [
         {
             event:    'click',
@@ -540,7 +607,32 @@ require('../themes/default.pcss');
             event:    'click',
             element:  '.sorti-box-available-toggle',
             function: available.toggleBox
-        }
+        },
+        {
+            event:    'dragstart',
+            element:  '.sorti-box-selected tbody tr:not(.info)',
+            function: dragStartHandle
+        },
+        {
+            event:    'dragover',
+            element:  '.sorti-box-selected tbody tr:not(.info)',
+            function: dragOverHandle
+        },
+        {
+            event:    'dragenter',
+            element:  '.sorti-box-selected tbody tr:not(.info)',
+            function: dragEnterHandle
+        },
+        {
+            event:    'drop',
+            element:  '.sorti-box-selected tbody tr:not(.info)',
+            function: dragDropHandle
+        },
+        {
+            event:    'dragend',
+            element:  '.sorti-box-selected tbody tr:not(.info)',
+            function: dragEndHandle
+        },
     ];
 
 
