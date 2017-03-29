@@ -537,6 +537,7 @@ require('../themes/default.pcss');
         $(this).css({opacity: '0.4'});
         dragSrcEl = this;
         e.originalEvent.dataTransfer.effectAllowed = 'move';
+        e.originalEvent.dataTransfer.setData('text/html', this.innerHTML); // needed for FF
     };
 
 
@@ -550,6 +551,22 @@ require('../themes/default.pcss');
         }
 
         e.originalEvent.dataTransfer.dropEffect = 'move';
+
+        var elementOver = this;
+        var elementOverPosYMiddle = ($(elementOver).height() / 2);
+        var elementOverPosYMouse = (e.originalEvent.clientY - elementOver.getBoundingClientRect().top);
+
+        setTimeout(function () {
+            // move element only if it was moved over other element & if mouse was not moved for some small time
+            if ((dragSrcEl != elementOver) && (elementOverPosYMouse == (e.originalEvent.clientY - elementOver.getBoundingClientRect().top))) {
+                if (elementOverPosYMouse > elementOverPosYMiddle) {
+                    $(dragSrcEl).detach().insertAfter($(elementOver));
+                }
+                else {
+                    $(dragSrcEl).detach().insertBefore($(elementOver));
+                }
+            }
+        }, 50);
     };
 
 
@@ -570,10 +587,6 @@ require('../themes/default.pcss');
     let dragDropHandle = function (e) {
         if (e.stopPropagation) {
             e.stopPropagation();
-        }
-
-        if (dragSrcEl != this) {
-            $(dragSrcEl).detach().insertBefore($(this));
         }
     };
 

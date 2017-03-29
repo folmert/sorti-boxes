@@ -564,6 +564,7 @@ __webpack_require__(1);
         $(this).css({ opacity: '0.4' });
         dragSrcEl = this;
         e.originalEvent.dataTransfer.effectAllowed = 'move';
+        e.originalEvent.dataTransfer.setData('text/html', this.innerHTML); // needed for FF
     };
 
     /**
@@ -576,12 +577,28 @@ __webpack_require__(1);
         }
 
         e.originalEvent.dataTransfer.dropEffect = 'move';
+
+        var elementOver = this;
+        var elementOverPosYMiddle = $(elementOver).height() / 2;
+        var elementOverPosYMouse = e.originalEvent.clientY - elementOver.getBoundingClientRect().top;
+
+        setTimeout(function () {
+            // move element only if it was moved over other element & if mouse was not moved for some small time
+            if (dragSrcEl != elementOver && elementOverPosYMouse == e.originalEvent.clientY - elementOver.getBoundingClientRect().top) {
+
+                if (elementOverPosYMouse > elementOverPosYMiddle) {
+                    $(dragSrcEl).detach().insertAfter($(elementOver));
+                } else {
+                    $(dragSrcEl).detach().insertBefore($(elementOver));
+                }
+            }
+        }, 50);
     };
 
     /**
      * Handler for action when dragged element is moved over other element for the first time
      */
-    var dragEnterHandle = function dragEnterHandle() {
+    var dragEnterHandle = function dragEnterHandle(e) {
         $('.sorti-box-selected tbody tr:not(.info)').removeClass('js-drag-over');
         this.classList.add('js-drag-over'); // remove on dragleave?
     };
@@ -594,10 +611,6 @@ __webpack_require__(1);
     var dragDropHandle = function dragDropHandle(e) {
         if (e.stopPropagation) {
             e.stopPropagation();
-        }
-
-        if (dragSrcEl != this) {
-            $(dragSrcEl).detach().insertBefore($(this));
         }
     };
 
