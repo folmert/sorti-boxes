@@ -20,6 +20,7 @@ Creates boxes with selectable and sortable elements. Requires jQuery 1.7+ and Bo
 TODO
 - support for Bootstrap 3
 - test for different versions of jQuery
+- complement tests by drag n drop feature
 - CSS to BEM
 - CSS: remove magic numbers and quirky code for rwd
 - add stylelint
