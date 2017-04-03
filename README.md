@@ -26,6 +26,7 @@ TODO
 - add stylelint
 - provide optional custom scope for binded events
 - method behind rendering boxes: extract to separate methods
+- error handling for incorrect options
 
 
 
