@@ -183,12 +183,12 @@ require('../themes/default.pcss');
             $.each(section.boxes, (boxIndex, box) => {
                 // 1. MAIN PARTS:
 
-                let _box = $('<div></div>').addClass('sorti-box').attr('rel', box.id);
-                let _boxSelected = $('<div class="sorti-box-selected-container"><div class="sorti-box-selected sorti-box-half"><table class="table"></table></div></div>');
-                let _boxAvailable = $('<div class="sorti-box-available-container"><div class="sorti-box-available sorti-box-half"><table class="table"></table></div></div>');
-                let _boxSelectedContent = $('<tbody></tbody>');
-                let _boxAvailableContent = $('<tbody></tbody>');
-                let _boxHead = $('<thead></thead>');
+                let _box = $(`<div></div>`).addClass('sorti-box').attr('rel', box.id);
+                let _boxSelected = $(`<div class="sorti-box-selected-container"><div class="sorti-box-selected sorti-box-half"><table class="table"></table></div></div>`);
+                let _boxAvailable = $(`<div class="sorti-box-available-container"><div class="sorti-box-available sorti-box-half"><table class="table"></table></div></div>`);
+                let _boxSelectedContent = $(`<tbody></tbody>`);
+                let _boxAvailableContent = $(`<tbody></tbody>`);
+                let _boxHead = $(`<thead></thead>`);
 
                 // 2. RENDER HEAD:
 
@@ -552,12 +552,12 @@ require('../themes/default.pcss');
 
         e.originalEvent.dataTransfer.dropEffect = 'move';
 
-        var elementOver = this;
-        var elementOverPosYMiddle = ($(elementOver).height() / 2);
-        var elementOverPosYMouse = (e.originalEvent.clientY - elementOver.getBoundingClientRect().top);
+        let elementOver = this;
+        let elementOverPosYMiddle = ($(elementOver).height() / 2);
+        let elementOverPosYMouse = (e.originalEvent.clientY - elementOver.getBoundingClientRect().top);
 
-        setTimeout(function () {
-            // move element only if it was moved over other element & if mouse was not moved for some small time
+        setTimeout(() => {
+            // move element only if it was moved over other element & if mouse was not moved for some short time
             if ((dragSrcEl != elementOver) && (elementOverPosYMouse == (e.originalEvent.clientY - elementOver.getBoundingClientRect().top))) {
                 if (elementOverPosYMouse > elementOverPosYMiddle) {
                     $(dragSrcEl).detach().insertAfter($(elementOver));
@@ -596,7 +596,7 @@ require('../themes/default.pcss');
      */
     let dragEndHandle = function () {
         $('.sorti-box-selected tbody tr:not(.info)').removeClass('js-drag-over');
-        $(this).css({opacity: '1'})
+        $(this).css({opacity: '1'});
     };
 
 
